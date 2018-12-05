@@ -6,11 +6,6 @@ public class CloudTrans : MonoBehaviour {
 
     public Transform[] CloudPosition;
 
-    public void CloudMoveing(string cloudID)
-    {
-
-    }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("cloud"))
