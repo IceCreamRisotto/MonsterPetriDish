@@ -14,7 +14,7 @@ public class loading : MonoBehaviour {
         StartCoroutine(loadLevelWithBar("Main"));
     }
 
-    IEnumerable loadLevelWithBar(string level) {
+    IEnumerator loadLevelWithBar(string level) {
         int dis=0;
         int toProgress = 0;
         async = Application.LoadLevelAsync(level);
