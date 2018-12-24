@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - cloud
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -14,9 +15,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - back
+  - player
+  - floor
   - 
   - 
   - 
@@ -41,4 +42,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: back(B)
+    uniqueID: 2344646931
+    locked: 0
+  - name: back(M)
+    uniqueID: 3500923605
+    locked: 0
+  - name: back(F)
+    uniqueID: 3825047481
+    locked: 0
+  - name: floor
+    uniqueID: 368007691
+    locked: 0
+  - name: background(B)
+    uniqueID: 2055602709
+    locked: 0
+  - name: player
+    uniqueID: 2125667037
+    locked: 0
+  - name: background(F)
+    uniqueID: 1115425349
     locked: 0
