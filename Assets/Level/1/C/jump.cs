@@ -26,15 +26,14 @@ public class jump : MonoBehaviour
 
     public void Jump()
     {
-        if (!isGround || player.velocity.y != 0) { return; }
-
+        if (!isGround ) { return; }
         player.AddForce(Vector3.up * jumpHeight);
 
     }
 
     void SetJumpState()
     {
-        if (player.velocity.y > 0.1)
+        if (player.velocity.y > 0.5f)
         {
             isGround = false;
             jumping = true;
@@ -53,7 +52,15 @@ public class jump : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D co)
     {
-        if (co.gameObject.tag == "Ground" && co.contacts[0].normal == Vector2.up)
+        if (co.gameObject.tag == "Ground" /*&& co.contacts[0].normal == Vector2.up*/)
+        {
+            isGround = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D co)
+    {
+        if (co.gameObject.tag == "Ground" /*&& co.contacts[0].normal == Vector2.up*/)
         {
             isGround = true;
         }
