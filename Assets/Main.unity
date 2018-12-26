@@ -1300,6 +1300,61 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224032189508935204, guid: 23cc8558e41ef004e8cf131e67cd5901,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -56.200005
+      objectReference: {fileID: 0}
+    - target: {fileID: 224032189508935204, guid: 23cc8558e41ef004e8cf131e67cd5901,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -56.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114236633560553456, guid: 23cc8558e41ef004e8cf131e67cd5901,
+        type: 2}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114236633560553456, guid: 23cc8558e41ef004e8cf131e67cd5901,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114236633560553456, guid: 23cc8558e41ef004e8cf131e67cd5901,
+        type: 2}
+      propertyPath: m_FontData.m_MaxSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224032189508935204, guid: 23cc8558e41ef004e8cf131e67cd5901,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 22.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 224032189508935204, guid: 23cc8558e41ef004e8cf131e67cd5901,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224032189508935204, guid: 23cc8558e41ef004e8cf131e67cd5901,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.00000047684
+      objectReference: {fileID: 0}
+    - target: {fileID: 224032189508935204, guid: 23cc8558e41ef004e8cf131e67cd5901,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -160
+      objectReference: {fileID: 0}
+    - target: {fileID: 224932785688157034, guid: 23cc8558e41ef004e8cf131e67cd5901,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 224932785688157034, guid: 23cc8558e41ef004e8cf131e67cd5901,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23cc8558e41ef004e8cf131e67cd5901, type: 2}
   m_IsPrefabParent: 0
@@ -3379,7 +3434,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 660266026}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 660266028}
+        m_MethodName: clickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &660266026
@@ -6573,7 +6639,7 @@ MonoBehaviour:
   - {fileID: 1003819103}
 --- !u!114 &1003819145
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1003819078}
