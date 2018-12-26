@@ -8,10 +8,11 @@ public class loading : MonoBehaviour {
     public Slider loadingBar;
     private AsyncOperation async;
     public Text load_text;
+    public string level;
 
     public void clickButton() {
         loadingImage.SetActive(true);
-        StartCoroutine(loadLevelWithBar("Main"));
+        StartCoroutine(loadLevelWithBar(level));
     }
 
     IEnumerator loadLevelWithBar(string level) {
