@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerMove : MonoBehaviour {
+public class PlayerMoveold2 : MonoBehaviour {
     public float speed;
     [Header("等待後有機會移動")]
     public float waitTime;
     public RectTransform rectTransform;
-    public GameObject myGameObject;
+    //public GameObject myGameObject;
     private bool Imove = false;
     public RectTransform mo;
     private float x_move;
@@ -53,5 +53,7 @@ public class PlayerMove : MonoBehaviour {
         rectTransform.position = Vector2.MoveTowards(rectTransform.position,mo.position,speed);
         //transform.position =new Vector2(Mathf.Clamp(transform.position.x, X_Moving_limit.x, X_Moving_limit.y), Mathf.Clamp(transform.position.y, Y_Moving_limit.x, Y_Moving_limit.y));//限制範圍
     }
+
+
 
 }
