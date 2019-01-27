@@ -32,6 +32,8 @@ public class MusicControl : MonoBehaviour {
             preVolume = audioSource.volume;
             audioSource.volume = 0;
             musicSlider.value = 0;
+            //BUG bool
+            muteState = true;
         }
         else
         {

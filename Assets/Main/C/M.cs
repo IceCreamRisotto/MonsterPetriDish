@@ -54,7 +54,7 @@ public class M : MonoBehaviour {
                 Move();
                 break;
             case 3:
-                Debug.Log(states);
+                //Debug.Log(states);
                 break;
         }
     }
