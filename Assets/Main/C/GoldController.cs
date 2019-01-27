@@ -15,5 +15,5 @@ public class GoldController : MonoBehaviour {
 	void Update () {
 	}
 
-    void 
+    
 }
