@@ -8,16 +8,27 @@ public class GameManager_Main : MonoBehaviour {
 
     public int explorationNo;
     public Flowchart gamemanagerFlowchart;
+    DateTime explorationStartTime;
+    DateTime explorationEndTime;
+    DateTime nullTime;
+    
 
 
 
     public void debug()
     {
-        Debug.Log(GetTime(GetTimeStamp()));
+        /*b = new DateTime(a.Year,a.Month,a.Day,a.Hour+1,a.Minute,a.Second);
+        Debug.Log("a="+a);
+        Debug.Log(b);
+        Debug.Log(b-a);
+        Debug.Log(DateTime.Now);
+        Debug.Log("TimeSpan" + b.Subtract(a));*/
     }
 
     public void Start()
     {
+        //a= GetTime(GetTimeStamp());
+        //b= (01:00:00);
         if (PlayerPrefs.HasKey("explorationNo"))
         {
             explorationNo = PlayerPrefs.GetInt("explorationNo");
@@ -70,9 +81,14 @@ public class GameManager_Main : MonoBehaviour {
     {
         explorationNo = explorationNumber;
         PlayerPrefs.SetInt("explorationNo", explorationNo);
-
-        String explorationStart = GetTime(GetTimeStamp()).ToString();
-        PlayerPrefs.SetString("explorationStart",explorationStart);
+        explorationStartTime = GetTime(GetTimeStamp());
+        PlayerPrefs.SetString("explorationStartTime", explorationStartTime.ToString());
+        //判斷哪一個探索關卡，給予endTime相應的加長時間
+        if(explorationNumber==2)//洞窟
+        {
+            explorationEndTime = new DateTime(explorationStartTime.Year, explorationStartTime.Month, explorationStartTime.Day, explorationStartTime.Hour + 1, explorationStartTime.Minute, explorationStartTime.Second);
+            PlayerPrefs.SetString("explorationEndTime", explorationEndTime.ToString());
+        }
     }
 
     void timeToInt(String Time)
