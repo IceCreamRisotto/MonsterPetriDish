@@ -7,20 +7,19 @@ using UnityEngine.UI;
 
 public class GameManager_Main : MonoBehaviour {
 
+    //已經變成探索系統管理器的遊戲管理器
+
     public int explorationNo;
     public Flowchart gamemanagerFlowchart;
     public Text explorationText;
     public GameObject[] explorationOnButton;
     public GameObject[] explorationOffButton;
-    Boolean explorationOnOff;
-    DateTime explorationStartTime; //探索開始時間
+    Boolean explorationOnOff; //因為探索放在update，設置開關減少效能消耗
+    DateTime explorationStartTime; //探索開始時間 備考:幾乎不需要
     DateTime explorationEndTime; //探索結束時間
     DateTime nullTime; //在判斷式上判斷其他DateTime變數是否為空值的標準
     //DateTime explorationEnd; //探索結束所需時長的標準
     TimeSpan reciprocal; //計時器
-
-
-
 
 
     public void debug()
@@ -41,10 +40,10 @@ public class GameManager_Main : MonoBehaviour {
         if (PlayerPrefs.HasKey("explorationNo"))
         {
             explorationNo = PlayerPrefs.GetInt("explorationNo");
-            if (PlayerPrefs.HasKey("explorationStartTime"))
+            /*if (PlayerPrefs.HasKey("explorationStartTime"))
                 explorationStartTime = Convert.ToDateTime(PlayerPrefs.GetString("explorationStartTime"));
             else
-                Debug.Log("探索開始時間儲存出現錯誤");
+                Debug.Log("探索開始時間儲存出現錯誤");*/
             if (PlayerPrefs.HasKey("explorationEndTime"))
                 explorationEndTime = Convert.ToDateTime(PlayerPrefs.GetString("explorationEndTime"));
             else
@@ -58,33 +57,32 @@ public class GameManager_Main : MonoBehaviour {
         
     }
 
-
     private void Update()
     {
         if (explorationOnOff)
             explorationIng();
     }
 
-    private static string GetTimeStamp()
+    private static string GetTimeStamp() //獲取時間DateTime方法(1)
     {
         TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
         return Convert.ToInt64(ts.TotalSeconds).ToString();
-    }
+    } 
 
-    private DateTime GetTime(string timeStamp)
+    private DateTime GetTime(string timeStamp) //獲取時間DateTime方法(2)
     {
         DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));  //时间戳起始点转为目前时区
         long lTime = long.Parse(timeStamp + "0000000");//转为long类型  
         TimeSpan toNow = new TimeSpan(lTime); //时间间隔
         return dtStart.Add(toNow); //加上时间间隔得到目标时间
-    }
+    } 
 
     public void OnMenu(GameObject ui)
     {
         ui.SetActive(false);
     }
 
-    public void explorationChack()
+    public void explorationChack() //開啟探索ui時判斷
     {
         if (explorationNo == 0)
         {
@@ -99,12 +97,12 @@ public class GameManager_Main : MonoBehaviour {
         }
     }
 
-    public void explorationEnterValue(int explorationNumber)
+    public void explorationEnterValue(int explorationNumber) //確認探索button
     {
         explorationNo = explorationNumber;
         PlayerPrefs.SetInt("explorationNo", explorationNo);
         explorationStartTime = GetTime(GetTimeStamp());
-        PlayerPrefs.SetString("explorationStartTime", explorationStartTime.ToString());
+        //PlayerPrefs.SetString("explorationStartTime", explorationStartTime.ToString());
         //判斷哪一個探索關卡，給予endTime相應的加長時間
         if(explorationNumber==2)//洞窟
         {
@@ -115,14 +113,7 @@ public class GameManager_Main : MonoBehaviour {
         explorationOnOff = true;
     }
 
-    void timeToInt(String Time)
-    {
-        int n;
-        String str;
-        //n=Time.IndexOf(" ")
-    }
-
-    public void explorationIng()
+    public void explorationIng() //探索計時器(update)
     {
         
         reciprocal = explorationEndTime - GetTime(GetTimeStamp());
@@ -148,7 +139,13 @@ public class GameManager_Main : MonoBehaviour {
         }
     }
 
-    public void explrationOff()
+    public void explorationClaer() //馬上完成&探索結束按鈕
+    {
+        explorationNo = 0;
+        PlayerPrefs.DeleteKey("explorationNo"); //重置編號其他變數也會重設
+    }
+
+    public void explrationOff() //調用關閉探索計時器Update
     {
         explorationOnOff = false;
     }
