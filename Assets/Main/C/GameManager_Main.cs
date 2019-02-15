@@ -3,15 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fungus;
 using System;
+using UnityEngine.UI;
 
 public class GameManager_Main : MonoBehaviour {
 
     public int explorationNo;
     public Flowchart gamemanagerFlowchart;
-    DateTime explorationStartTime;
-    DateTime explorationEndTime;
-    DateTime nullTime;
-    
+    public Text explorationText;
+    public GameObject[] explorationOnButton;
+    public GameObject[] explorationOffButton;
+    Boolean explorationOnOff;
+    DateTime explorationStartTime; //探索開始時間
+    DateTime explorationEndTime; //探索結束時間
+    DateTime nullTime; //在判斷式上判斷其他DateTime變數是否為空值的標準
+    //DateTime explorationEnd; //探索結束所需時長的標準
+    TimeSpan reciprocal; //計時器
+
+
 
 
 
@@ -23,6 +31,7 @@ public class GameManager_Main : MonoBehaviour {
         Debug.Log(b-a);
         Debug.Log(DateTime.Now);
         Debug.Log("TimeSpan" + b.Subtract(a));*/
+        Debug.Log(reciprocal);
     }
 
     public void Start()
@@ -32,16 +41,28 @@ public class GameManager_Main : MonoBehaviour {
         if (PlayerPrefs.HasKey("explorationNo"))
         {
             explorationNo = PlayerPrefs.GetInt("explorationNo");
+            if (PlayerPrefs.HasKey("explorationStartTime"))
+                explorationStartTime = Convert.ToDateTime(PlayerPrefs.GetString("explorationStartTime"));
+            else
+                Debug.Log("探索開始時間儲存出現錯誤");
+            if (PlayerPrefs.HasKey("explorationEndTime"))
+                explorationEndTime = Convert.ToDateTime(PlayerPrefs.GetString("explorationEndTime"));
+            else
+                Debug.Log("探索結束時間儲存出現錯誤");
         }
         else
         {
             explorationNo = 0;
+            explorationOnOff = false;
         }
+        
     }
+
 
     private void Update()
     {
-        
+        if (explorationOnOff)
+            explorationIng();
     }
 
     private static string GetTimeStamp()
@@ -74,6 +95,7 @@ public class GameManager_Main : MonoBehaviour {
         {
             Block talkBlock = gamemanagerFlowchart.FindBlock("探索3出現");
             gamemanagerFlowchart.ExecuteBlock(talkBlock);
+            explorationOnOff = true;
         }
     }
 
@@ -86,9 +108,11 @@ public class GameManager_Main : MonoBehaviour {
         //判斷哪一個探索關卡，給予endTime相應的加長時間
         if(explorationNumber==2)//洞窟
         {
+            //explorationEnd = new DateTime(nullTime.Year, nullTime.Month, nullTime.Day, nullTime.Hour+1, nullTime.Minute, nullTime.Second);
             explorationEndTime = new DateTime(explorationStartTime.Year, explorationStartTime.Month, explorationStartTime.Day, explorationStartTime.Hour + 1, explorationStartTime.Minute, explorationStartTime.Second);
             PlayerPrefs.SetString("explorationEndTime", explorationEndTime.ToString());
         }
+        explorationOnOff = true;
     }
 
     void timeToInt(String Time)
@@ -96,5 +120,36 @@ public class GameManager_Main : MonoBehaviour {
         int n;
         String str;
         //n=Time.IndexOf(" ")
+    }
+
+    public void explorationIng()
+    {
+        
+        reciprocal = explorationEndTime - GetTime(GetTimeStamp());
+        if (reciprocal > nullTime-nullTime)
+        {
+            explorationText.text = "剩餘時間 " + reciprocal;
+            buttonOnOff(explorationOnButton, true);
+            buttonOnOff(explorationOffButton, false);
+        }
+        else
+        {
+            explorationText.text = "剩餘時間 00:00:00";
+            buttonOnOff(explorationOnButton, false);
+            buttonOnOff(explorationOffButton, true);
+        }
+    }
+
+    void buttonOnOff(GameObject[] buttons,Boolean a)//a判斷t或f，把button打開或關掉
+    {
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].SetActive(a);
+        }
+    }
+
+    public void explrationOff()
+    {
+        explorationOnOff = false;
     }
 }
