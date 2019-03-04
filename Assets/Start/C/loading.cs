@@ -36,12 +36,38 @@ public class loading : MonoBehaviour {
             setLoading(dis);
             yield return new WaitForEndOfFrame();
         }
+
+        TurnToScreen();//旋轉螢幕
+
         async.allowSceneActivation = true;
     }
 
     private void setLoading(float percent) {
         loadingBar.value = percent / 100f;
         load_text.text = percent.ToString() + " %";
+    }
+
+    private void TurnToScreen() {
+        if (level == "Level")
+        {
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
+
+            Screen.orientation = ScreenOrientation.AutoRotation;
+            Screen.autorotateToLandscapeLeft = true;
+            Screen.autorotateToLandscapeRight = true;
+            Screen.autorotateToPortrait = false;
+            Screen.autorotateToPortraitUpsideDown = false;
+        }
+        else
+        {
+            Screen.orientation = ScreenOrientation.Portrait;
+
+            Screen.orientation = ScreenOrientation.AutoRotation;
+            Screen.autorotateToLandscapeLeft = false;
+            Screen.autorotateToLandscapeRight = false;
+            Screen.autorotateToPortrait = true;
+            Screen.autorotateToPortraitUpsideDown = true;
+        }
     }
 
 
