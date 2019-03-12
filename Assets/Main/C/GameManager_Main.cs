@@ -14,6 +14,10 @@ public class GameManager_Main : MonoBehaviour {
     public Text explorationText;
     public GameObject[] explorationOnButton;
     public GameObject[] explorationOffButton;
+
+    public Image explorePicture;
+    public Button explorButton;
+
     Boolean explorationOnOff; //因為探索放在update，設置開關減少效能消耗
     DateTime explorationStartTime; //探索開始時間 備考:幾乎不需要
     DateTime explorationEndTime; //探索結束時間
@@ -148,5 +152,10 @@ public class GameManager_Main : MonoBehaviour {
     public void explrationOff() //調用關閉探索計時器Update
     {
         explorationOnOff = false;
+    }
+
+    public void exploreButton(int exploreNumber) //點擊探索關卡，修改任務介面
+    {
+        explorePicture.sprite = Resources.Load("explore/"+exploreNumber, typeof(Sprite)) as Sprite;
     }
 }
