@@ -18,14 +18,20 @@ public class GameManager_Main : MonoBehaviour {
     [Header("探索圖片")]
     public Image explorePicture; //探索確認頁面的圖片
 
+    [Header("探索中圖片")]
+    public Image explorringPicture; //探索中頁面的圖片
+
     [Header("探索標題")]
     public Text explorTitle; //探索確認頁面標題
+
+    [Header("探索中標題")]
+    public Text explorringTitle; //探索中頁面標題
 
     [Header("探索副標")]
     public Text explorTitleTwo; //探索確認頁面副標題(探索時間)
 
     [Header("探索按鈕陣列")]
-    public Button[] explorButtons; //探索確認頁面的確認按鈕
+    public GameObject[] explorButtons; //探索確認頁面的確認按鈕
 
     [Header("探索確認頁文本")]
     String[,] explorText=new string[2,2]; //探索確認頁面對應文本(第一維=第幾關&第二維=主副標題)
@@ -113,9 +119,10 @@ public class GameManager_Main : MonoBehaviour {
             Block talkBlock = gamemanagerFlowchart.FindBlock("探索出現");
             gamemanagerFlowchart.ExecuteBlock(talkBlock);
         }
-        else if(explorationNo == 2)
+        else
         {
-            Block talkBlock = gamemanagerFlowchart.FindBlock("探索3出現");
+            exploreDataUpdate(explorationNo);
+            Block talkBlock = gamemanagerFlowchart.FindBlock("探索中出現");
             gamemanagerFlowchart.ExecuteBlock(talkBlock);
             explorationOnOff = true;
         }
@@ -131,15 +138,20 @@ public class GameManager_Main : MonoBehaviour {
         if (explorationNumber == 1)//滾筒木屋
         {
             //explorationEnd = new DateTime(nullTime.Year, nullTime.Month, nullTime.Day, nullTime.Hour+1, nullTime.Minute, nullTime.Second);
-            explorationEndTime = new DateTime(explorationStartTime.Year, explorationStartTime.Month, explorationStartTime.Day, explorationStartTime.Hour, explorationStartTime.Minute+30, explorationStartTime.Second);
+            //explorationEndTime = new DateTime(explorationStartTime.Year, explorationStartTime.Month, explorationStartTime.Day, explorationStartTime.Hour, explorationStartTime.Minute+30, explorationStartTime.Second);
+            explorationEndTime = explorationStartTime.AddMinutes(30);
             PlayerPrefs.SetString("explorationEndTime", explorationEndTime.ToString());
         }
-        if (explorationNumber==2)//洞窟
+        if (explorationNumber == 2)//洞窟
         {
             //explorationEnd = new DateTime(nullTime.Year, nullTime.Month, nullTime.Day, nullTime.Hour+1, nullTime.Minute, nullTime.Second);
-            explorationEndTime = new DateTime(explorationStartTime.Year, explorationStartTime.Month, explorationStartTime.Day, explorationStartTime.Hour + 1, explorationStartTime.Minute, explorationStartTime.Second);
+            //explorationEndTime = new DateTime(explorationStartTime.Year, explorationStartTime.Month, explorationStartTime.Day, explorationStartTime.Hour + 1, explorationStartTime.Minute, explorationStartTime.Second);
+            explorationEndTime = explorationStartTime.AddHours(1);
             PlayerPrefs.SetString("explorationEndTime", explorationEndTime.ToString());
         }
+        exploreDataUpdate(explorationNo);
+        Block talkBlock = gamemanagerFlowchart.FindBlock("探索選單確定"); //呼叫探索中
+        gamemanagerFlowchart.ExecuteBlock(talkBlock);
         explorationOnOff = true;
     }
 
@@ -182,10 +194,31 @@ public class GameManager_Main : MonoBehaviour {
 
     public void exploreButton(int exploreNumber) //點擊探索關卡，修改任務介面
     {
-        explorTitle.text = explorText[exploreNumber-1,0]; //修改標題
-        explorTitleTwo.text = explorText[exploreNumber - 1,1]; //修改花費時間
-        explorePicture.sprite = Resources.Load("explore/"+exploreNumber, typeof(Sprite)) as Sprite; //改圖
+        exploreDataUpdate(exploreNumber);
+
+        for (int i = 0; i < explorButtons.Length; i++)//開啟所屬編號button，其餘關閉
+        {
+            if (i + 1 == exploreNumber)
+            {
+                explorButtons[i].SetActive(true);
+            }
+            else
+            {
+                explorButtons[i].SetActive(false);
+            }
+        }
+
         Block talkBlock = gamemanagerFlowchart.FindBlock("探索選單出現"); //呼叫確認頁面出現
         gamemanagerFlowchart.ExecuteBlock(talkBlock);
+    }
+
+    void exploreDataUpdate(int exploreNumber) //探索資訊更新
+    {
+        explorTitle.text = explorText[exploreNumber - 1, 0]; //修改標題
+        explorTitleTwo.text = explorText[exploreNumber - 1, 1]; //修改花費時間
+        explorePicture.sprite = Resources.Load("explore/" + exploreNumber, typeof(Sprite)) as Sprite; //改圖
+
+        explorringTitle.text = explorText[exploreNumber - 1, 0]; //修改探索中標題
+        explorringPicture.sprite = Resources.Load("explore/" + exploreNumber, typeof(Sprite)) as Sprite; //改圖
     }
 }
