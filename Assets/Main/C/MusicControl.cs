@@ -8,7 +8,7 @@ public class MusicControl : MonoBehaviour {
     private AudioSource audioSource;
     private bool muteState;
     private float preVolume;
-    public Slider musicSlider;
+    //public Slider musicSlider;
 
     private void Start()
     {
@@ -18,11 +18,11 @@ public class MusicControl : MonoBehaviour {
         preVolume = audioSource.volume;
     }
 
-    public void VolumeChanged(float newVolume)
+    /*public void VolumeChanged(float newVolume)
     {
         audioSource.volume = newVolume;
         muteState = false;
-    }
+    }*/
 
     public void MuteClick()
     {
@@ -31,14 +31,14 @@ public class MusicControl : MonoBehaviour {
         {
             preVolume = audioSource.volume;
             audioSource.volume = 0;
-            musicSlider.value = 0;
+            //musicSlider.value = 0;
             //BUG bool
             muteState = true;
         }
         else
         {
             audioSource.volume = preVolume;
-            musicSlider.value = preVolume;
+            //musicSlider.value = preVolume;
         }
     }
 
