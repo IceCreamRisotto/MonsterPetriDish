@@ -14,6 +14,28 @@ public class GameManager_Main : MonoBehaviour {
     public Text explorationText;
     public GameObject[] explorationOnButton;
     public GameObject[] explorationOffButton;
+
+    [Header("探索圖片")]
+    public Image explorePicture; //探索確認頁面的圖片
+
+    [Header("探索中圖片")]
+    public Image explorringPicture; //探索中頁面的圖片
+
+    [Header("探索標題")]
+    public Text explorTitle; //探索確認頁面標題
+
+    [Header("探索中標題")]
+    public Text explorringTitle; //探索中頁面標題
+
+    [Header("探索副標")]
+    public Text explorTitleTwo; //探索確認頁面副標題(探索時間)
+
+    [Header("探索按鈕陣列")]
+    public GameObject[] explorButtons; //探索確認頁面的確認按鈕
+
+    [Header("探索確認頁文本")]
+    String[,] explorText=new string[2,2]; //探索確認頁面對應文本(第一維=第幾關&第二維=主副標題)
+
     Boolean explorationOnOff; //因為探索放在update，設置開關減少效能消耗
     DateTime explorationStartTime; //探索開始時間 備考:幾乎不需要
     DateTime explorationEndTime; //探索結束時間
@@ -35,6 +57,13 @@ public class GameManager_Main : MonoBehaviour {
 
     public void Start()
     {
+
+        //探索確認選單，文本更新處
+        explorText[0,0] = "Level.1  滾筒木屋";
+        explorText[0,1] = "探索時間 半 小時";
+        explorText[1,0] = "Level.2  洞窟";
+        explorText[1,1] = "探索時間 1 小時";
+
         //a= GetTime(GetTimeStamp());
         //b= (01:00:00);
         if (PlayerPrefs.HasKey("explorationNo"))
@@ -54,7 +83,8 @@ public class GameManager_Main : MonoBehaviour {
             explorationNo = 0;
             explorationOnOff = false;
         }
-        
+
+
     }
 
     private void Update()
@@ -89,9 +119,10 @@ public class GameManager_Main : MonoBehaviour {
             Block talkBlock = gamemanagerFlowchart.FindBlock("探索出現");
             gamemanagerFlowchart.ExecuteBlock(talkBlock);
         }
-        else if(explorationNo == 2)
+        else
         {
-            Block talkBlock = gamemanagerFlowchart.FindBlock("探索3出現");
+            exploreDataUpdate(explorationNo);
+            Block talkBlock = gamemanagerFlowchart.FindBlock("探索中出現");
             gamemanagerFlowchart.ExecuteBlock(talkBlock);
             explorationOnOff = true;
         }
@@ -104,12 +135,23 @@ public class GameManager_Main : MonoBehaviour {
         explorationStartTime = GetTime(GetTimeStamp());
         //PlayerPrefs.SetString("explorationStartTime", explorationStartTime.ToString());
         //判斷哪一個探索關卡，給予endTime相應的加長時間
-        if(explorationNumber==2)//洞窟
+        if (explorationNumber == 1)//滾筒木屋
         {
             //explorationEnd = new DateTime(nullTime.Year, nullTime.Month, nullTime.Day, nullTime.Hour+1, nullTime.Minute, nullTime.Second);
-            explorationEndTime = new DateTime(explorationStartTime.Year, explorationStartTime.Month, explorationStartTime.Day, explorationStartTime.Hour + 1, explorationStartTime.Minute, explorationStartTime.Second);
+            //explorationEndTime = new DateTime(explorationStartTime.Year, explorationStartTime.Month, explorationStartTime.Day, explorationStartTime.Hour, explorationStartTime.Minute+30, explorationStartTime.Second);
+            explorationEndTime = explorationStartTime.AddMinutes(30);
             PlayerPrefs.SetString("explorationEndTime", explorationEndTime.ToString());
         }
+        if (explorationNumber == 2)//洞窟
+        {
+            //explorationEnd = new DateTime(nullTime.Year, nullTime.Month, nullTime.Day, nullTime.Hour+1, nullTime.Minute, nullTime.Second);
+            //explorationEndTime = new DateTime(explorationStartTime.Year, explorationStartTime.Month, explorationStartTime.Day, explorationStartTime.Hour + 1, explorationStartTime.Minute, explorationStartTime.Second);
+            explorationEndTime = explorationStartTime.AddHours(1);
+            PlayerPrefs.SetString("explorationEndTime", explorationEndTime.ToString());
+        }
+        exploreDataUpdate(explorationNo);
+        Block talkBlock = gamemanagerFlowchart.FindBlock("探索選單確定"); //呼叫探索中
+        gamemanagerFlowchart.ExecuteBlock(talkBlock);
         explorationOnOff = true;
     }
 
@@ -148,5 +190,35 @@ public class GameManager_Main : MonoBehaviour {
     public void explrationOff() //調用關閉探索計時器Update
     {
         explorationOnOff = false;
+    }
+
+    public void exploreButton(int exploreNumber) //點擊探索關卡，修改任務介面
+    {
+        exploreDataUpdate(exploreNumber);
+
+        for (int i = 0; i < explorButtons.Length; i++)//開啟所屬編號button，其餘關閉
+        {
+            if (i + 1 == exploreNumber)
+            {
+                explorButtons[i].SetActive(true);
+            }
+            else
+            {
+                explorButtons[i].SetActive(false);
+            }
+        }
+
+        Block talkBlock = gamemanagerFlowchart.FindBlock("探索選單出現"); //呼叫確認頁面出現
+        gamemanagerFlowchart.ExecuteBlock(talkBlock);
+    }
+
+    void exploreDataUpdate(int exploreNumber) //探索資訊更新
+    {
+        explorTitle.text = explorText[exploreNumber - 1, 0]; //修改標題
+        explorTitleTwo.text = explorText[exploreNumber - 1, 1]; //修改花費時間
+        explorePicture.sprite = Resources.Load("explore/" + exploreNumber, typeof(Sprite)) as Sprite; //改圖
+
+        explorringTitle.text = explorText[exploreNumber - 1, 0]; //修改探索中標題
+        explorringPicture.sprite = Resources.Load("explore/" + exploreNumber, typeof(Sprite)) as Sprite; //改圖
     }
 }
