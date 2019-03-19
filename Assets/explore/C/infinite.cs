@@ -7,19 +7,21 @@ public class infinite : MonoBehaviour {
     public float speed;
     private Vector2 offset;
     private float nowpos;
+    public bool start_infinite;
 
-    // Use this for initialization
-    void Start()
+    private void Awake()
     {
+        start_infinite = true;
         offset = new Vector2(0, 0);
-        GetComponent<Image>().material.SetTextureOffset("_MainTex", offset);
+        GetComponent<Image>().material.SetTextureOffset("_MainTex",offset);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        nowpos += speed * Time.deltaTime;
-        offset = new Vector2(nowpos, 0);
-        GetComponent<Image>().material.SetTextureOffset("_MainTex", offset);
+        if (start_infinite == true) {
+            nowpos += speed * Time.deltaTime;
+            offset = new Vector2(nowpos, 0);
+            GetComponent<Image>().material.SetTextureOffset("_MainTex", offset);
+        }
     }
 }
