@@ -22,6 +22,7 @@ public class M : MonoBehaviour {
     private int states;
 
     public Transform turn;
+    public float v3=0.5f;
 
     public Transform lim_UpperRight;
     public Transform lim_BottomLeft;
@@ -34,7 +35,7 @@ public class M : MonoBehaviour {
 
     private void Update()
     {
-        if (coRou==null) {//等太久會睡覺
+        if (coRou == null) {//等太久會睡覺
             coRou = StartCoroutine(sleep());
         }
 
@@ -60,14 +61,16 @@ public class M : MonoBehaviour {
     }
 
     void Move() {
+
         if (x_move > 0f)
         {
-            turn.transform.localScale = new Vector3(-1f, 1f, 1f);
+            turn.transform.localScale = new Vector3(-v3, v3, v3);
         }
         else
         {
-            turn.transform.localScale = new Vector3(1f, 1f, 1f);
+            turn.transform.localScale = new Vector3(v3, v3, v3);
         }
+
         float x_abs, y_abs;
         x_abs = Mathf.Abs(player.position.x - Moving_target.position.x);
         y_abs = Mathf.Abs(player.position.y - Moving_target.position.y);
@@ -78,6 +81,7 @@ public class M : MonoBehaviour {
         }
         player.position = Vector2.MoveTowards(player.position, Moving_target.position, speed);
     }
+
 
     IEnumerator rest() {
         animator.SetInteger("states", states);
