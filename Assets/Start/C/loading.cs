@@ -42,12 +42,12 @@ public class loading : MonoBehaviour {
         async.allowSceneActivation = true;
     }
 
-    private void setLoading(float percent) {
+    private void setLoading(float percent) {    //改變%數
         loadingBar.value = percent / 100f;
         load_text.text = percent.ToString() + " %";
     }
 
-    private void TurnToScreen() {
+    private void TurnToScreen() {   //畫面轉向
         if (level == "Level")
         {
             Screen.orientation = ScreenOrientation.LandscapeLeft;
