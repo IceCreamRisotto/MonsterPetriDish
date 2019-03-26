@@ -35,7 +35,7 @@ public class Load : MonoBehaviour {
         }
 
         Background_Code = UnityEngine.Random.Range(0, Loading_Background_Amount);   //讀取背景編號的方式
-        Debug.Log(Background_Code);
+        //Debug.Log(Background_Code);
         obj_check[Background_Code] += 1;
         LoadMap();
 
