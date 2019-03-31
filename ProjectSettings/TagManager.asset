@@ -18,7 +18,7 @@ TagManager:
   - back
   - player
   - floor
-  - 
+  - collisionLayer
   - 
   - 
   - 
@@ -43,24 +43,27 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: back(B)
+  - name: mountain(B)
+    uniqueID: 2144562797
+    locked: 0
+  - name: mountain(M)
+    uniqueID: 361690873
+    locked: 0
+  - name: mountain(F)
+    uniqueID: 2896282209
+    locked: 0
+  - name: background(B)
     uniqueID: 2344646931
     locked: 0
-  - name: back(M)
+  - name: background(M)
     uniqueID: 3500923605
     locked: 0
-  - name: back(F)
+  - name: background(F)
     uniqueID: 3825047481
     locked: 0
   - name: floor
     uniqueID: 368007691
     locked: 0
-  - name: background(B)
-    uniqueID: 2055602709
-    locked: 0
   - name: player
     uniqueID: 2125667037
-    locked: 0
-  - name: background(F)
-    uniqueID: 1115425349
     locked: 0
