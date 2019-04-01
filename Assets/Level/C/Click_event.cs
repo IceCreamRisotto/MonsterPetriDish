@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Click_event : MonoBehaviour {
 
      public GameObject image;
-     public bool click_type = false;
+     private bool click_type = false;
 
     private void Update()
     {
