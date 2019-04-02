@@ -9,6 +9,8 @@ public class floor_move : MonoBehaviour {
     public Transform limit_Left;
     public Transform limit_Right;
 
+    public Animator player_animator_speed;
+
     private void Update()
     {
         foreach (GameObject i in floor) {
@@ -17,6 +19,7 @@ public class floor_move : MonoBehaviour {
             }
             chick(i);
         }
+        player_animator_speed.speed = floor_speed / 2;
     }
     void chick(GameObject i) {
         if (i.transform.position.x <= limit_Left.position.x) {
