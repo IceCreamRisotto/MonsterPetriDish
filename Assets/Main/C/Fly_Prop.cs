@@ -33,6 +33,7 @@ public class Fly_Prop : MonoBehaviour
     {
         if(collision.tag == "eatTag")
         {
+            Instantiate(Resources.Load<GameObject>("prop/PlayerLight"));
             Destroy(this.gameObject);
         }
     }
