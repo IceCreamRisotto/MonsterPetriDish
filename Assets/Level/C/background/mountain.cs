@@ -11,6 +11,9 @@ public class mountain : MonoBehaviour {
 
     void Update()
     {
+        float map = (float)GameObject.Find("map").GetComponent<floor_move>().floor_speed/2.4f;
+        mountains_speed = map;
+
         foreach (Transform i in mountains)
         {
             i.position = new Vector3(i.position.x - mountains_speed * Time.deltaTime, i.position.y, i.position.z);

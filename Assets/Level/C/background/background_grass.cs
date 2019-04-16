@@ -11,6 +11,9 @@ public class background_grass : MonoBehaviour {
     
     void Update()
     {
+        float map = (float)GameObject.Find("map").GetComponent<floor_move>().floor_speed/1.2f;
+        background_speed = map;
+
         foreach (Transform i in background)
         {
             i.position = new Vector3(i.position.x - background_speed * Time.deltaTime, i.position.y, i.position.z);

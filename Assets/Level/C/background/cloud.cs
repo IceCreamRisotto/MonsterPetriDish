@@ -10,6 +10,9 @@ public class cloud : MonoBehaviour {
     public Transform limit_Right;
 	
 	void Update () {
+        float map= (float)GameObject.Find("map").GetComponent<floor_move>().floor_speed/2f;
+        clouds_speed = map;
+
         foreach (Transform i in clouds)
         {
             i.position = new Vector3(i.position.x - clouds_speed * Time.deltaTime, i.position.y, i.position.z);
