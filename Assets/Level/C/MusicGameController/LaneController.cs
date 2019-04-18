@@ -51,9 +51,52 @@ public class LaneController : MonoBehaviour {
     void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    //UiButton點下方法
+    public void buttonClickDown()
+    {
+        CheckNoteHit();
+        downVisual.SetActive(true);
+    }
+
+    //UiButton案住方法
+    public void buttonClicking()
+    {
+        //檢測長音符
+        if (hasLongNote)
+        {
+            if (timeVal >= 0.15f)
+            {
+                //顯示命中等級 (Great Perfect)
+                if (longNoteHitEffectGo.activeSelf)
+                {
+                    //CreateHitLongEffect();
+                }
+                timeVal = 0;
+            }
+            else
+            {
+                timeVal += Time.deltaTime;
+            }
+        }
+    }
+
+    //UiButton抬起方法
+    public void buttonClickUp()
+    {
+        downVisual.SetActive(false);
+        //檢測長音符
+        if (hasLongNote)
+        {
+            longNoteHitEffectGo.SetActive(false);
+            hitLongEffectGo.SetActive(false);
+            CheckNoteHit();
+        }
+    }
+
+
+    // Update is called once per frame
+    void Update () {
 
         //清除無效音符
         while (trackedNotes.Count > 0 && trackedNotes.Peek().isNoteMissed())

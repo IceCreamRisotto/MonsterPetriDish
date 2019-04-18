@@ -5,7 +5,7 @@ using SonicBloom.Koreo;
 
 public class NoteObject : MonoBehaviour {
 
-    public Transform TopTarget;
+    //public Transform TopTarget;
 
     public Animator visuals;
 
@@ -30,14 +30,16 @@ public class NoteObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(laneController!=null)
         UpdatePosition();
+        if(gameController!=null)
         GetHitOffset();
-
-        if (transform.position.x <= laneController.targetBottomTrans.position.x)
-        {
-            gameController.ReturnNoteObjectToPool(this);
-            ResetNote();
-        }
+        if (laneController != null)
+            if (transform.position.x <= laneController.targetBottomTrans.position.x)
+            {
+                gameController.ReturnNoteObjectToPool(this);
+                ResetNote();
+            }
     }
 
     //初始化方法
@@ -77,7 +79,7 @@ public class NoteObject : MonoBehaviour {
     {
         visuals.SetInteger("attack", 1);
         gameController.ReturnNoteObjectToPool(this);
-        //ResetNote();
+        ResetNote();
     }
 
     //擊中音符對象
