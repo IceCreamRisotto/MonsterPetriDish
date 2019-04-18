@@ -5,9 +5,11 @@ using SonicBloom.Koreo;
 
 public class NoteObject : MonoBehaviour {
 
-    public SpriteRenderer visuals;
+    public Transform TopTarget;
 
-    public Sprite[] noteSprites;
+    public Animator visuals;
+
+    //public Animator[] noteSprites;
 
     KoreographyEvent trackEvent;
 
@@ -31,7 +33,7 @@ public class NoteObject : MonoBehaviour {
         UpdatePosition();
         GetHitOffset();
 
-        if (transform.position.z <= laneController.targetBottomTrans.position.z)
+        if (transform.position.x <= laneController.targetBottomTrans.position.x)
         {
             gameController.ReturnNoteObjectToPool(this);
             ResetNote();
@@ -58,7 +60,8 @@ public class NoteObject : MonoBehaviour {
             spriteNum += 12;
         }
 
-        visuals.sprite = noteSprites[spriteNum - 1];
+        visuals.SetInteger("Stly", spriteNum);
+        //noteSprites[spriteNum - 1].SetInteger("Stly", spriteNum);
     }
 
     //將note對象重置
@@ -72,8 +75,9 @@ public class NoteObject : MonoBehaviour {
     //返回對象池
     void RetuenToPool()
     {
+        visuals.SetInteger("attack", 1);
         gameController.ReturnNoteObjectToPool(this);
-        ResetNote();
+        //ResetNote();
     }
 
     //擊中音符對象
@@ -85,9 +89,9 @@ public class NoteObject : MonoBehaviour {
     //音符移動
     void UpdatePosition()
     {
-        Vector3 pos = laneController.TargetPosition;
+        Vector2 pos = laneController.TargetPosition;
 
-        pos.z -= (gameController.DelayedSampleTime - trackEvent.StartSample) / (float)gameController.SampleRate * gameController.noteSpeed;
+        pos.x -= (gameController.DelayedSampleTime - trackEvent.StartSample) / (float)gameController.SampleRate * gameController.noteSpeed;
 
         transform.position = pos;
     }

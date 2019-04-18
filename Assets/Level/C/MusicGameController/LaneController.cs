@@ -33,7 +33,7 @@ public class LaneController : MonoBehaviour {
     public GameObject downVisual;
 
     //音符移動的目標位置
-    public Vector3 TargetPosition
+    public Vector2 TargetPosition
     {
         get
         {
@@ -130,7 +130,7 @@ public class LaneController : MonoBehaviour {
     int GetSpawnSampleOffset()
     {
         //出生位置與目標點位置
-        float spawnDistToTarget = targetTopTrans.position.z - transform.position.z;
+        float spawnDistToTarget = targetTopTrans.position.x - transform.position.x;
 
         //到達目標點的時間
         float spawnPosToTargetTime = spawnDistToTarget / gameController.noteSpeed;
