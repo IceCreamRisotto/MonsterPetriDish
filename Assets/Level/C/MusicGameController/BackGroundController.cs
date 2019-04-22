@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using SonicBloom.Koreo;
 
-public class RhythmGameController : MonoBehaviour {
+public class BackGroundController : MonoBehaviour
+{
+    public RhythmGameController gameController;
 
     [Tooltip("用於目標生成的軌道的事件對應ID")]
     [EventID]
@@ -21,14 +23,14 @@ public class RhythmGameController : MonoBehaviour {
 
     //音符對象池
     //音符
-    Stack<NoteObject> noteObjectPool = new Stack<NoteObject>();
+    Stack<StarObject> starObjectPool = new Stack<StarObject>();
 
     //按下特效
     public Stack<GameObject> downEffectObjectPool = new Stack<GameObject>();
 
     //預製體資源
     //音符
-    public NoteObject noteObject;
+    public StarObject starObject;
 
     //按下特效
     public GameObject downEffectGo;
@@ -36,26 +38,17 @@ public class RhythmGameController : MonoBehaviour {
     //引用
     Koreography playingKoreo;
 
-    public AudioSource audioCom;
+    //public AudioSource audioCom;
 
-    public List<LaneController> noteLanes = new List<LaneController>();
+    public List<StarController> starLanes = new List<StarController>();
 
     //其他
     [Tooltip("開始播放音頻之前提供的時間量,單位s")]
-    public float leadInTime;
+    float leadInTime;
     //音頻播放之前的剩餘時間量
     float leadInTimeLeft;
     //音樂開始播放的倒計時器
     float timeLeftToPlay;
-
-    //給星星前導時間
-    public float StarLeadInTime
-    {
-        get
-        {
-            return leadInTime;
-        }
-    }
 
     //當前採樣時間，包含延遲呼叫
     public float DelayedSampleTime
@@ -94,11 +87,13 @@ public class RhythmGameController : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
-        InitializeLeadIn();
-        for (int i = 0; i < noteLanes.Count; i++)
+    void Start()
+    {
+        leadInTime = gameController.StarLeadInTime;
+        //InitializeLeadIn();
+        for (int i = 0; i < starLanes.Count; i++)
         {
-            noteLanes[i].Initialize(this);
+            starLanes[i].Initialize(this);
         }
 
         //採取到koreograpy對象
@@ -114,9 +109,9 @@ public class RhythmGameController : MonoBehaviour {
             int noteID = evt.GetIntValue();
 
             //編列所有音軌
-            for (int j = 0; j < noteLanes.Count; j++)
+            for (int j = 0; j < starLanes.Count; j++)
             {
-                LaneController lane = noteLanes[j];
+                StarController lane = starLanes[j];
                 if (noteID > 6)
                 {
                     noteID = noteID - 6;
@@ -136,16 +131,17 @@ public class RhythmGameController : MonoBehaviour {
         //打擊區間=速度(音頻採樣率)*時間
         hitWindowRangeInSamples = (int)(SampleRate * hitWindowsRangeInMS * 0.001f);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    { 
         if (timeLeftToPlay > 0)
         {
             timeLeftToPlay -= Time.unscaledDeltaTime;
 
             if (timeLeftToPlay <= 0)
             {
-                audioCom.Play();
+                //audioCom.Play();
                 timeLeftToPlay = 0;
             }
         }
@@ -167,7 +163,7 @@ public class RhythmGameController : MonoBehaviour {
         }
         else
         {
-            audioCom.Play();
+            //audioCom.Play();
         }
     }
 
@@ -175,18 +171,18 @@ public class RhythmGameController : MonoBehaviour {
     //有關對象池
     //
     //從音符池中取對象的方法
-    public NoteObject GetFreshNoteObject()
+    public StarObject GetFreshStarObject()
     {
-        NoteObject retObj;
+        StarObject retObj;
 
-        if (noteObjectPool.Count > 0)
+        if (starObjectPool.Count > 0)
         {
-            retObj = noteObjectPool.Pop();
+            retObj = starObjectPool.Pop();
         }
         else
         {
             //資源源
-            retObj = Instantiate(noteObject);
+            retObj = Instantiate(starObject);
         }
 
         retObj.gameObject.SetActive(true);
@@ -195,17 +191,17 @@ public class RhythmGameController : MonoBehaviour {
         return retObj;
     }
 
-        //把音符對象放回對象池
-        public void ReturnNoteObjectToPool(NoteObject obj)
+    //把音符對象放回對象池
+    public void ReturnStarObjectToPool(StarObject obj)
+    {
+        if (obj != null)
         {
-            if (obj != null)
-            {
-                obj.transform.position = noteObject.gameObject.transform.position;
-                obj.enabled = false;
-                obj.gameObject.SetActive(false);
-                noteObjectPool.Push(obj);
-            }
+            obj.transform.position = starObject.gameObject.transform.position;
+            obj.enabled = false;
+            obj.gameObject.SetActive(false);
+            starObjectPool.Push(obj);
         }
+    }
 
     //從特效池中取對象的方法(GameObejct)
     public GameObject GetFreshEffectObject(Stack<GameObject> stack, GameObject effectObject)
@@ -235,4 +231,6 @@ public class RhythmGameController : MonoBehaviour {
             stack.Push(effectGo);
         }
     }
+
+
 }
