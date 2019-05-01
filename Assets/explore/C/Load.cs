@@ -59,7 +59,7 @@ public class Load : MonoBehaviour {
 
                 obj_check[Background_Code] += 1;
 
-                Debug.Log(Background_Code);
+                //Debug.Log(Background_Code);
                 GetComponent<Image>().enabled = true;
                 GetComponent<Animation>().Play("Fade");
 
