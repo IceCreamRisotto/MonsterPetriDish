@@ -13,12 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mEventID: Hard
   mEventList:
-  - mStartSample: 5512
-    mEndSample: 5512
-  - mStartSample: 16537
-    mEndSample: 16537
-  - mStartSample: 22050
-    mEndSample: 22050
+  - mStartSample: 6013
+    mEndSample: 6013
+  - mStartSample: 12027
+    mEndSample: 12027
+  - mStartSample: 18040
+    mEndSample: 18040
   - mStartSample: 33075
     mEndSample: 33075
   - mStartSample: 38587
@@ -59,6 +59,74 @@ MonoBehaviour:
     mEndSample: 173643
   - mStartSample: 179156
     mEndSample: 179156
+  - mStartSample: 189429
+    mEndSample: 189429
+  - mStartSample: 198450
+    mEndSample: 198450
+  - mStartSample: 208973
+    mEndSample: 208973
+  - mStartSample: 211980
+    mEndSample: 211980
+  - mStartSample: 224007
+    mEndSample: 224007
+  - mStartSample: 228518
+    mEndSample: 228518
+  - mStartSample: 233028
+    mEndSample: 233028
+  - mStartSample: 243552
+    mEndSample: 243552
+  - mStartSample: 251069
+    mEndSample: 251069
+  - mStartSample: 263096
+    mEndSample: 263096
+  - mStartSample: 269110
+    mEndSample: 269110
+  - mStartSample: 275123
+    mEndSample: 275123
+  - mStartSample: 279634
+    mEndSample: 279634
+  - mStartSample: 284144
+    mEndSample: 284144
+  - mStartSample: 291661
+    mEndSample: 291661
+  - mStartSample: 296171
+    mEndSample: 296171
+  - mStartSample: 300681
+    mEndSample: 300681
+  - mStartSample: 314212
+    mEndSample: 314212
+  - mStartSample: 317219
+    mEndSample: 317219
+  - mStartSample: 324736
+    mEndSample: 324736
+  - mStartSample: 329246
+    mEndSample: 329246
+  - mStartSample: 333756
+    mEndSample: 333756
+  - mStartSample: 345784
+    mEndSample: 345784
+  - mStartSample: 350294
+    mEndSample: 350294
+  - mStartSample: 354804
+    mEndSample: 354804
+  - mStartSample: 366831
+    mEndSample: 366831
+  - mStartSample: 369838
+    mEndSample: 369838
+  - mStartSample: 377355
+    mEndSample: 377355
+  - mStartSample: 381865
+    mEndSample: 381865
+  - mStartSample: 386376
+    mEndSample: 386376
+  - mStartSample: 401410
+    mEndSample: 401410
+  - mStartSample: 407423
+    mEndSample: 407423
+  - mStartSample: 410430
+    mEndSample: 410430
+  - mStartSample: 413437
+    mEndSample: 413437
   _SerializedPayloadTypes:
   - SonicBloom.Koreo.IntPayload
   _AssetPayloads: []
