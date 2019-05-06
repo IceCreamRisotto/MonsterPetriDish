@@ -24,4 +24,10 @@ public class infinite : MonoBehaviour {
             GetComponent<Image>().material.SetTextureOffset("_MainTex", offset);
         }
     }
+    void stopInfinite() {
+        start_infinite = false;
+    }
+    void startInfinite() {
+        start_infinite = true;
+    }
 }

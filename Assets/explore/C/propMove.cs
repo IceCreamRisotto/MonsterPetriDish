@@ -11,22 +11,11 @@ public class propMove : MonoBehaviour {
     bool state = false;
     player play;
     infinite inf;
-    //public Flowchart flowchart;
-
-    public Flowchart flowchart;
-    Block talkBlock;
-    public string SirName {
-        get { return flowchart.GetStringVariable("sir"); }
-        set { flowchart.SetStringVariable("sir", value); }
-    }
 
     private void Awake()
     {
         play=GameObject.Find("player").GetComponent<player>();
         inf= GameObject.Find("背景卷軸").GetComponent<infinite>();
-        //flowchart.GetIntegerVariable("ran");
-        talkBlock = flowchart.FindBlock("test");
-        flowchart.ExecuteBlock(talkBlock);
     }
 
     void Update () {
@@ -51,7 +40,6 @@ public class propMove : MonoBehaviour {
                 play.di();
                 inf.start_infinite = false;
                 state = false;
-                SirName = "123123";
             }
         }
 
