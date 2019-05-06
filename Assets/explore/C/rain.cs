@@ -6,13 +6,8 @@ using UnityEngine.UI;
 public class rain : MonoBehaviour {
 
     public float speedX, speedY;
-    RectTransform resetPosition;
-    public RectTransform button;
-
-    private void Awake()
-    {
-        resetPosition = gameObject.GetComponent<RectTransform>();
-    }
+    public Transform button;
+    public Transform[] startPosition;
 
     void Update () {
         down();
@@ -24,8 +19,9 @@ public class rain : MonoBehaviour {
     }
 
     void reset() {
-        if (gameObject.transform.position.y <= button.transform.position.y) {
-            gameObject.transform.position = new Vector3(resetPosition.position.x, resetPosition.position.y, resetPosition.position.z);
+        if (gameObject.transform.position.y <= button.position.y) {
+            int i=UnityEngine.Random.Range(0, startPosition.Length);
+            gameObject.transform.position = new Vector3(startPosition[i].position.x, startPosition[i].position.y, gameObject.transform.position.z);
         }
     }
 }
