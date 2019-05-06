@@ -13,6 +13,18 @@ public class ItemController : MonoBehaviour {
     [Header("物件給予經驗值量")]
     public int[] itemsExp;
 
+    //物品欄物件
+    [Header("物品欄物件")]
+    public GameObject[] itemPropGameObjects;
+
+    //收集冊物件
+    [Header("收集冊物件")]
+    public GameObject[] itemGameObjects;
+
+    //收集冊數量
+    [Header("收集冊物件數量")]
+    public Text[] itemGameObjectsText;
+
     //這個物件一次扣多少個
     //int[] deduct;
 
@@ -24,6 +36,38 @@ public class ItemController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
+    }
+
+    public void ClickProp()
+    {
+        for(int i=0;i<itemPropGameObjects.Length;i++)
+        {
+            if(items[i]>0)
+            {
+                itemPropGameObjects[i].SetActive(true);
+            }
+            else
+            {
+                itemPropGameObjects[i].SetActive(false);
+            }
+        }
+    }
+
+    public void ClickInventory()
+    {
+        for(int i=0;i<itemGameObjects.Length;i++)
+        {
+            if(items[i]>0)
+            {
+                itemGameObjects[i].SetActive(true);
+                itemGameObjectsText[i].text = items[i].ToString();
+            }
+            else
+            {
+                itemGameObjects[i].SetActive(false);
+                itemGameObjectsText[i].text = "";
+            }
+        }
     }
 
 
@@ -38,6 +82,13 @@ public class ItemController : MonoBehaviour {
     {
         if (items[itemNo] > 0)
             items[itemNo] -= 1;
+        if (items[itemNo] <= 0)
+            PropItemOpacity(itemNo);
+    }
+
+    void PropItemOpacity(int itemNo)
+    {
+        itemPropGameObjects[itemNo].SetActive(false);
     }
 
     //檢查對應物件經驗值
@@ -45,4 +96,6 @@ public class ItemController : MonoBehaviour {
     {
         return itemsExp[itemNo];
     }
+
+    
 }

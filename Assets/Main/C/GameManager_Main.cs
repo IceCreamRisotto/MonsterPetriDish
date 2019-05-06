@@ -52,7 +52,7 @@ public class GameManager_Main : MonoBehaviour {
         Debug.Log(b-a);
         Debug.Log(DateTime.Now);
         Debug.Log("TimeSpan" + b.Subtract(a));*/
-        Debug.Log(reciprocal);
+        //Debug.Log(reciprocal);
     }
 
     public void Start()
