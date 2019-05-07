@@ -9,12 +9,15 @@ public class GameManager : MonoBehaviour {
     static GameManager instance;
 
     //角色等級變數
+    [Header("角色等級")]
     public int playerLv;
 
     //角色經驗值變數
+    [Header("角色經驗值")]
     public int playerExp;
 
     //角色經驗值上限變數(暫時統一100)
+    [Header("角色經驗值上限")]
     public int playerExpUp = 100;
 
 
