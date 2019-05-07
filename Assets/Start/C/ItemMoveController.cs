@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
+public class ItemMoveController : MonoBehaviour {
 
     public float itemMoveSpeed = 0.01f;
     public float itemWaitSecond = 0.1f;

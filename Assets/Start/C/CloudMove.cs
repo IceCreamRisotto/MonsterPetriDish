@@ -6,14 +6,14 @@ public class CloudMove : MonoBehaviour {
 
     private Transform me;
     private Transform oldMe;
-    private GameManager gameManager;
+    ItemMoveController itemMoveController;
 
 	// Use this for initialization
 	void Start () {
-        gameManager = FindObjectOfType<GameManager>();
+        itemMoveController = ItemMoveController.FindObjectOfType<ItemMoveController>();
         me = GetComponent<Transform>();
         //StartCoroutine(Move());
-        gameManager.ItemMove(me);
+        itemMoveController.ItemMove(me);
     }
 
     /*IEnumerator Move()

@@ -198,15 +198,15 @@ public class LaneController : MonoBehaviour {
             NoteObject newObj = gameController.GetFreshNoteObject();
             bool isLongNoteStart = false;
             bool isLongNoteEnd = false;
-            if (noteNum > 6)
+            if (noteNum > 2)
             {
                 isLongNoteStart = true;
-                noteNum = noteNum - 6;
-                if (noteNum > 6)
+                noteNum = noteNum - 2;
+                if (noteNum > 2)
                 {
                     isLongNoteStart = false;
                     isLongNoteEnd = true;
-                    noteNum = noteNum - 6;
+                    noteNum = noteNum - 2;
                 }
             }
             //初始化下一個音符

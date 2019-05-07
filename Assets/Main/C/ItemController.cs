@@ -22,15 +22,29 @@ public class ItemController : MonoBehaviour {
     public GameObject[] itemGameObjects;
 
     //收集冊數量
-    [Header("收集冊物件數量")]
+    [Header("收集冊物件數量文字")]
     public Text[] itemGameObjectsText;
-
-    //這個物件一次扣多少個
-    //int[] deduct;
 
     // Use this for initialization
     void Start() {
-
+        //檢查獲得物品
+        if(PlayerPrefs.HasKey("getItemBoolean"))
+        {
+            if(PlayerPrefs.GetInt("getItemBoolean")==1)
+            {
+                int getItemNo = PlayerPrefs.GetInt("getItemNo");
+                int getItem = PlayerPrefs.GetInt("getItem");
+                items[getItemNo] += getItem;
+                PlayerPrefs.DeleteKey("getItemNo");
+                PlayerPrefs.DeleteKey("getItem");
+                PlayerPrefs.SetInt("getItemBoolean", 0);
+            }
+        }
+        else
+        {
+            Debug.Log("物品是否獲取為空");
+            PlayerPrefs.SetInt("getItemBoolean", 0);
+        }
     }
 
     // Update is called once per frame
@@ -38,6 +52,7 @@ public class ItemController : MonoBehaviour {
 
     }
 
+    //打開物品
     public void ClickProp()
     {
         for(int i=0;i<itemPropGameObjects.Length;i++)
@@ -53,6 +68,7 @@ public class ItemController : MonoBehaviour {
         }
     }
 
+    //打開收集冊
     public void ClickInventory()
     {
         for(int i=0;i<itemGameObjects.Length;i++)
@@ -86,6 +102,7 @@ public class ItemController : MonoBehaviour {
             PropItemOpacity(itemNo);
     }
 
+    //物件從物品消失
     void PropItemOpacity(int itemNo)
     {
         itemPropGameObjects[itemNo].SetActive(false);

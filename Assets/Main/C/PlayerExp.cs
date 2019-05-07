@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class PlayerExp : MonoBehaviour {
 
     //角色等級變數
@@ -15,24 +16,23 @@ public class PlayerExp : MonoBehaviour {
     //角色經驗值上限變數(暫時統一100)
     public int playerExpUp = 100;
 
-
     //經驗值相關UI
     public Text expText;
     public Slider expSlider;
 
 
     //引用
+    public GameManager_Main gameManager;
     public ItemController itemController;
+
+    GameManager allGameManager;
 
 	// Use this for initialization
 	void Start () {
+        //allGameManager =
 
         //角色等級置入
-		if(PlayerPrefs.HasKey("playerLv"))
-        {
-            
-        }
-        else
+		if(!PlayerPrefs.HasKey("playerLv"))
         {
             playerLv = 0;
             Debug.Log("角色等級為空");
@@ -66,6 +66,12 @@ public class PlayerExp : MonoBehaviour {
     {
         //itemController = itemControllerGo;
     }*/
+    
+    //獲取角色等級
+    public int GetPlayerLv()
+    {
+        return playerLv;
+    }
 
     //吃到食物
     //扣除食物，增加經驗值，經驗值UI變化
@@ -87,6 +93,7 @@ public class PlayerExp : MonoBehaviour {
             if(oldPlayerExp >= playerExpUp)
             {
                 playerLv += 1;
+                gameManager.PlayerLvUp();
                 oldPlayerExp = 0;
                 playerExp -= playerExpUp;
             }

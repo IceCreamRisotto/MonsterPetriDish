@@ -8,9 +8,12 @@ using UnityEngine.UI;
 public class GameManager_Main : MonoBehaviour {
 
     //已經變成探索系統管理器的遊戲管理器
+    //沒有好好分類的遊戲管理器
+
 
     public int explorationNo;
     public Flowchart gamemanagerFlowchart;
+    public PlayerExp playerExp;
     public Text explorationText;
     public GameObject[] explorationOnButton;
     public GameObject[] explorationOffButton;
@@ -86,6 +89,7 @@ public class GameManager_Main : MonoBehaviour {
 
 
     }
+
 
     private void Update()
     {
@@ -220,5 +224,13 @@ public class GameManager_Main : MonoBehaviour {
 
         explorringTitle.text = explorText[exploreNumber - 1, 0]; //修改探索中標題
         explorringPicture.sprite = Resources.Load("explore/" + exploreNumber, typeof(Sprite)) as Sprite; //改圖
+    }
+
+
+    public void PlayerLvUp()
+    {
+        gamemanagerFlowchart.SetIntegerVariable("playerLv", playerExp.GetPlayerLv());
+        Block LvUp = gamemanagerFlowchart.FindBlock("LvUp");
+        gamemanagerFlowchart.ExecuteBlock("LvUp");
     }
 }
