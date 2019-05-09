@@ -20,7 +20,7 @@ public class rain : MonoBehaviour {
 
     void reset() {
         if (gameObject.transform.position.y <= button.position.y) {
-            int i=UnityEngine.Random.Range(0, startPosition.Length);
+            int i = 0;//UnityEngine.Random.Range(0, startPosition.Length);
             gameObject.transform.position = new Vector3(startPosition[i].position.x, startPosition[i].position.y, gameObject.transform.position.z);
         }
     }
