@@ -5,6 +5,8 @@ using SonicBloom.Koreo;
 
 public class NoteObject : MonoBehaviour {
 
+    int lanes;
+
     //public Transform TopTarget;
 
     public Animator visuals;
@@ -30,7 +32,13 @@ public class NoteObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(laneController!=null)
+        //暫停
+        if (gameController.isPauseState)
+        {
+            return;
+        }
+
+        if (laneController!=null)
         UpdatePosition();
         if(gameController!=null)
         GetHitOffset();
@@ -55,15 +63,17 @@ public class NoteObject : MonoBehaviour {
 
         if (isLongNoteStart)
         {
-            spriteNum += 2;
+            spriteNum += lanes;
         }
         else if (isLongNoteEnd)
         {
-            spriteNum += 4;
+            spriteNum += lanes+lanes;
         }
 
         visuals.SetInteger("Stly", spriteNum);
         //noteSprites[spriteNum - 1].SetInteger("Stly", spriteNum);
+
+        lanes=gameController.GetLanes();
     }
 
     //將note對象重置
@@ -128,9 +138,9 @@ public class NoteObject : MonoBehaviour {
         int hitLevel = 0;
         if (hitOffset >= 0)
         {
-            if (hitOffset >= 4500 && hitOffset <= 7500)
+            if (hitOffset >= 5000 && hitOffset <= 9000)
             {
-                hitLevel = 2;
+                hitLevel = lanes;
             }
             else
             {

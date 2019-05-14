@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class RhythmGameController : MonoBehaviour {
 
+    [Header("當前按鍵數量")]
+    public int lanes=2;
+
     [Tooltip("用於目標生成的軌道的事件對應ID")]
     [EventID]
     public string eventID;
@@ -168,12 +171,12 @@ public class RhythmGameController : MonoBehaviour {
             for (int j = 0; j < noteLanes.Count; j++)
             {
                 LaneController lane = noteLanes[j];
-                if (noteID > 6)
+                if (noteID > lanes)
                 {
-                    noteID = noteID - 6;
-                    if (noteID > 6)
+                    noteID = noteID - lanes;
+                    if (noteID > lanes)
                     {
-                        noteID = noteID - 6;
+                        noteID = noteID - lanes;
                     }
 
                 }
@@ -190,13 +193,19 @@ public class RhythmGameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (isPauseState)
+        {
+            return;
+        }
+
         if (timeLeftToPlay > 0)
         {
             timeLeftToPlay -= Time.unscaledDeltaTime;
-
+            //引導時間結束，開始播放
             if (timeLeftToPlay <= 0)
             {
                 audioCom.Play();
+                gameStart = true;
                 timeLeftToPlay = 0;
             }
         }
@@ -205,6 +214,23 @@ public class RhythmGameController : MonoBehaviour {
         if (leadInTimeLeft > 0)
         {
             leadInTimeLeft = Mathf.Max(leadInTimeLeft - Time.unscaledDeltaTime, 0);
+        }
+
+        if (hitLevelImage.gameObject.activeSelf)
+        {
+            if (hideHitLevelImageTimeVal > 0)
+            {
+                hideHitLevelImageTimeVal -= Time.deltaTime;
+            }
+            else
+            {
+                HideComboNumText();
+                HideHitLevelImage();
+            }
+
+            if (gameStart && !simpleMusicPlayer.IsPlaying)
+                gameOverUI.SetActive(true);
+
         }
     }
 
@@ -326,7 +352,7 @@ public class RhythmGameController : MonoBehaviour {
     //血量更新
     public void UpdateHp()
     {
-        hp = hp - 2;
+        hp = hp - lanes;
         slider.value = (float)hp / 10;
         if (hp == 0)
         {
@@ -362,5 +388,11 @@ public class RhythmGameController : MonoBehaviour {
     public void ReturnToMain()
     {
         SceneManager.LoadScene(0);
+    }
+
+    //獲取此遊戲按鍵數量
+    public int GetLanes()
+    {
+        return lanes;
     }
 }

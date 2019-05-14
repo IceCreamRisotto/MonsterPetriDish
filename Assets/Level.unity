@@ -139,9 +139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1622ac048280554469059b6476324a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lanes: 2
   eventID: Test
   noteSpeed: 10
-  hitWindowsRangeInMS: 300
+  hitWindowsRangeInMS: 200
   noteObject: {fileID: 1498231304}
   downEffectGo: {fileID: 1538062950}
   hitEffectGo: {fileID: 0}
@@ -156,7 +157,7 @@ MonoBehaviour:
   score: 0
   hp: 10
   isPauseState: 0
-  slider: {fileID: 0}
+  slider: {fileID: 668167156}
   scoreText: {fileID: 0}
   hitLevelImage: {fileID: 0}
   hitLevelImageAnim: {fileID: 0}
@@ -2828,16 +2829,16 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 255751318}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.10006714, y: 3, z: 0}
+  m_LocalPosition: {x: -2.5, y: 0.0000019073486, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 668167155}
-  m_RootOrder: 2
+  m_Father: {fileID: 1269259271}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.10006, y: 3.000001}
-  m_SizeDelta: {x: -37.1, y: -50.1}
+  m_AnchoredPosition: {x: -2.5000017, y: 0.0000014305115}
+  m_SizeDelta: {x: 4.999977, y: -0.039985657}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &255751320
 Animator:
@@ -2876,10 +2877,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 8de0ef0618361e840ae4acbce79f89f4, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -5106,7 +5107,6 @@ RectTransform:
   m_Children:
   - {fileID: 455306025}
   - {fileID: 1269259271}
-  - {fileID: 255751319}
   m_Father: {fileID: 1538601307}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9375,7 +9375,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.3999481, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 255751319}
   m_Father: {fileID: 668167155}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

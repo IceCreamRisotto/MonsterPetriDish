@@ -5,6 +5,8 @@ using SonicBloom.Koreo;
 
 public class LaneController : MonoBehaviour {
 
+    int lanes;
+
     RhythmGameController gameController;
 
     [Tooltip("此音軌使用的鍵盤按鍵")]
@@ -97,6 +99,11 @@ public class LaneController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        //暫停
+        if (gameController.isPauseState)
+        {
+            return;
+        }
 
         //清除無效音符
         while (trackedNotes.Count > 0 && trackedNotes.Peek().isNoteMissed())
@@ -105,7 +112,13 @@ public class LaneController : MonoBehaviour {
             {
                 hasLongNote = false;
                 timeVal = 0;
+                longNoteHitEffectGo.SetActive(false);
+                hitLongEffectGo.SetActive(false);
             }
+            gameController.comboNum = 0;
+            gameController.HideComboNumText();
+            gameController.ChangHitLevelSprite(0);
+            gameController.UpdateHp();
             trackedNotes.Dequeue();
         }
 
@@ -128,7 +141,8 @@ public class LaneController : MonoBehaviour {
                     //顯示命中等級 (Great Perfect)
                     if (longNoteHitEffectGo.activeSelf)
                     {
-                        //CreateHitLongEffect();
+                        gameController.ChangHitLevelSprite(lanes);
+                        CreateHitLongEffect();
                     }
                     timeVal = 0;
                 }
@@ -154,7 +168,8 @@ public class LaneController : MonoBehaviour {
     public void Initialize(RhythmGameController controller)
     {
         gameController = controller;
-        //hitLongEffectGo = gameController.GetFreshEffectObject(gameController.hitLongEffectObjectPool, gameController.hitLongNoteEffectGo);
+        hitLongEffectGo = gameController.GetFreshEffectObject(gameController.hitLongEffectObjectPool, gameController.hitLongNoteEffectGo);
+        lanes = gameController.GetLanes();
     }
 
     //檢查事件與當前音軌是否匹配
@@ -198,15 +213,15 @@ public class LaneController : MonoBehaviour {
             NoteObject newObj = gameController.GetFreshNoteObject();
             bool isLongNoteStart = false;
             bool isLongNoteEnd = false;
-            if (noteNum > 2)
+            if (noteNum > lanes)
             {
                 isLongNoteStart = true;
-                noteNum = noteNum - 2;
-                if (noteNum > 2)
+                noteNum = noteNum - lanes;
+                if (noteNum > lanes)
                 {
                     isLongNoteStart = false;
                     isLongNoteEnd = true;
-                    noteNum = noteNum - 2;
+                    noteNum = noteNum - lanes;
                 }
             }
             //初始化下一個音符
