@@ -5,10 +5,6 @@ using UnityEngine.UI;
 
 public class ItemController : MonoBehaviour {
 
-    //對應編號物件剩餘量
-    [Header("物件剩餘量")]
-    public int[] items;
-
     //對應編號物件經驗值量
     [Header("物件給予經驗值量")]
     public int[] itemsExp;
@@ -25,8 +21,14 @@ public class ItemController : MonoBehaviour {
     [Header("收集冊物件數量文字")]
     public Text[] itemGameObjectsText;
 
+    //引用
+    public GameManager gameManager;
+
     // Use this for initialization
     void Start() {
+
+        gameManager = FindObjectOfType<GameManager>();
+
         //檢查獲得物品
         if(PlayerPrefs.HasKey("getItemBoolean"))
         {
@@ -34,7 +36,7 @@ public class ItemController : MonoBehaviour {
             {
                 int getItemNo = PlayerPrefs.GetInt("getItemNo");
                 int getItem = PlayerPrefs.GetInt("getItem");
-                items[getItemNo] += getItem;
+                gameManager.SetItems(getItemNo, getItem);
                 PlayerPrefs.DeleteKey("getItemNo");
                 PlayerPrefs.DeleteKey("getItem");
                 PlayerPrefs.SetInt("getItemBoolean", 0);
@@ -57,7 +59,7 @@ public class ItemController : MonoBehaviour {
     {
         for(int i=0;i<itemPropGameObjects.Length;i++)
         {
-            if(items[i]>0)
+            if(gameManager.GetItems(i)>0)
             {
                 itemPropGameObjects[i].SetActive(true);
             }
@@ -73,10 +75,10 @@ public class ItemController : MonoBehaviour {
     {
         for(int i=0;i<itemGameObjects.Length;i++)
         {
-            if(items[i]>0)
+            if(gameManager.GetItems(i)> 0)
             {
                 itemGameObjects[i].SetActive(true);
-                itemGameObjectsText[i].text = items[i].ToString();
+                itemGameObjectsText[i].text = gameManager.GetItems(i).ToString();
             }
             else
             {
@@ -90,15 +92,15 @@ public class ItemController : MonoBehaviour {
     //檢查對應物件剩餘量
     public int ItemMuch(int itemNo)
     {
-        return items[itemNo];
+        return gameManager.GetItems(itemNo);
     }
 
     //扣除對應物件剩餘量
     public void ItemDeduct(int itemNo)
     {
-        if (items[itemNo] > 0)
-            items[itemNo] -= 1;
-        if (items[itemNo] <= 0)
+        if (gameManager.GetItems(itemNo) > 0)
+            gameManager.SetItems(itemNo,-1);
+        if (gameManager.GetItems(itemNo) <= 0)
             PropItemOpacity(itemNo);
     }
 

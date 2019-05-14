@@ -219,6 +219,28 @@ public class LaneController : MonoBehaviour {
 
     }
 
+    //
+    //生成特效的有關方法
+    //
+    void CreateDownEffect()
+    {
+        GameObject downEffectGo = gameController.GetFreshEffectObject(gameController.downEffectObjectPool, gameController.downEffectGo);
+        downEffectGo.transform.position = targetVisuals.position;
+    }
+
+    void CreateHitEffect()
+    {
+        GameObject hitEffectGo = gameController.GetFreshEffectObject(gameController.hitEffectObjectPool, gameController.hitEffectGo);
+        hitEffectGo.transform.position = targetVisuals.position;
+    }
+
+    void CreateHitLongEffect()
+    {
+        longNoteHitEffectGo.SetActive(true);
+        hitLongEffectGo.SetActive(true);
+        hitLongEffectGo.transform.position = targetVisuals.position;
+    }   
+
     //檢測是否有擊中音符對象
     //如果是，他將執行命中並刪除
     public void CheckNoteHit()
@@ -230,39 +252,49 @@ public class LaneController : MonoBehaviour {
             {
                 trackedNotes.Dequeue();
                 int hitLevel = noteObject.IsNoteHittable();
+                gameController.ChangHitLevelSprite(hitLevel);
                 if (hitLevel > 0)
                 {
                     //擊中音符目標
                     //更新分數
+                    gameController.UpdateScoreText(100 * hitLevel);
                     //產生擊中特效
                     if (noteObject.isLongNoteStart)
                     {
                         hasLongNote = true;
-                        //CreateHitLongEffect();
-                    }
+                        CreateHitLongEffect();
+                    }//關閉長音符
                     else if (noteObject.isLongNoteEnd)
                     {
                         hasLongNote = false;
                     }
-                    else
+                    else //生成一個打擊特效
                     {
-                        //CreateHitEffect();
+                        CreateHitEffect();
                     }
 
                     //增加combo
+                    gameController.comboNum++;
                 }
                 else
                 {
                     //未擊中
                     //減少玩家HP
+                    gameController.UpdateHp();
                     //斷掉combo
+                    gameController.HideComboNumText();
+                    gameController.comboNum = 0;
                 }
                 noteObject.OnHit();
             }
             else
             {
-                //CreateDownEffect();
+                CreateDownEffect();
             }
+        }
+        else//當線上沒有音符時
+        {
+            CreateDownEffect();
         }
     }
 

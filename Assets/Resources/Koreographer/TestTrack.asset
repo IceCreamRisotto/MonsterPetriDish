@@ -65,10 +65,44 @@ MonoBehaviour:
     mEndSample: 503192
   - mStartSample: 508846
     mEndSample: 508846
-  - mStartSample: 514500
-    mEndSample: 514500
+  - mStartSample: 516384
+    mEndSample: 516384
+  - mStartSample: 540884
+    mEndSample: 540884
   - mStartSample: 552663
     mEndSample: 552663
+  - mStartSample: 576692
+    mEndSample: 576692
+  - mStartSample: 589884
+    mEndSample: 589884
+  - mStartSample: 601192
+    mEndSample: 601192
+  - mStartSample: 612500
+    mEndSample: 612500
+  - mStartSample: 672807
+    mEndSample: 672807
+  - mStartSample: 697307
+    mEndSample: 697307
+  - mStartSample: 704846
+    mEndSample: 704846
+  - mStartSample: 721807
+    mEndSample: 721807
+  - mStartSample: 733115
+    mEndSample: 733115
+  - mStartSample: 748192
+    mEndSample: 748192
+  - mStartSample: 772692
+    mEndSample: 772692
+  - mStartSample: 787769
+    mEndSample: 787769
+  - mStartSample: 797192
+    mEndSample: 797192
+  - mStartSample: 808500
+    mEndSample: 808500
+  - mStartSample: 819807
+    mEndSample: 819807
+  - mStartSample: 842423
+    mEndSample: 842423
   _SerializedPayloadTypes:
   - SonicBloom.Koreo.IntPayload
   _AssetPayloads: []
@@ -96,21 +130,38 @@ MonoBehaviour:
   - mIntVal: 5
   - mIntVal: 1
   - mIntVal: 2
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
+  - mIntVal: 1
+  - mIntVal: 1
+  - mIntVal: 1
   - mIntVal: 3
   - mIntVal: 5
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 7
-  - mIntVal: 9
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  _IntPayloadIdxs: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b000000
+  - mIntVal: 2
+  - mIntVal: 2
+  - mIntVal: 4
+  - mIntVal: 6
+  - mIntVal: 1
+  - mIntVal: 2
+  - mIntVal: 2
+  - mIntVal: 3
+  - mIntVal: 5
+  - mIntVal: 4
+  - mIntVal: 2
+  - mIntVal: 2
+  - mIntVal: 2
+  - mIntVal: 4
+  - mIntVal: 6
+  - mIntVal: 1
+  - mIntVal: 1
+  - mIntVal: 3
+  - mIntVal: 2
+  - mIntVal: 2
+  - mIntVal: 2
+  - mIntVal: 2
+  - mIntVal: 2
+  - mIntVal: 2
+  - mIntVal: 2
+  - mIntVal: 2
+  _IntPayloadIdxs: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c000000
   _SpectrumPayloads: []
   _SpectrumPayloadIdxs: 
   _TextPayloads: []

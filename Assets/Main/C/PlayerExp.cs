@@ -6,15 +6,9 @@ using UnityEngine.UI;
 
 public class PlayerExp : MonoBehaviour {
 
-    //角色等級變數
-    public int playerLv;
 
-    //角色經驗值變數
-    public int playerExp;
     int oldPlayerExp;
 
-    //角色經驗值上限變數(暫時統一100)
-    public int playerExpUp = 100;
 
     //經驗值相關UI
     public Text expText;
@@ -22,15 +16,24 @@ public class PlayerExp : MonoBehaviour {
 
 
     //引用
-    public GameManager_Main gameManager;
+    public GameManager_Main gameManager_Main;
     public ItemController itemController;
 
-    GameManager allGameManager;
+    public GameManager gameManager;
 
 	// Use this for initialization
 	void Start () {
-        //allGameManager =
+        gameManager = FindObjectOfType<GameManager>();
 
+        //playerLv = gameManager.GetPlayerExp(0);
+        //playerExp = gameManager.GetPlayerExp(1);
+
+        expText.text = gameManager.GetPlayerExp(1) + "/" + gameManager.GetPlayerExp(2);
+        expSlider.value = (float)gameManager.GetPlayerExp(1) / (float)gameManager.GetPlayerExp(2);
+
+        oldPlayerExp = gameManager.GetPlayerExp(1);
+
+        /*
         //角色等級置入
 		if(!PlayerPrefs.HasKey("playerLv"))
         {
@@ -52,10 +55,10 @@ public class PlayerExp : MonoBehaviour {
             playerExp = 0;
             oldPlayerExp = playerExp;
             Debug.Log("角色經驗值為空");
-        }
+        }*/
 
-        
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -70,40 +73,40 @@ public class PlayerExp : MonoBehaviour {
     //獲取角色等級
     public int GetPlayerLv()
     {
-        return playerLv;
+        return gameManager.GetPlayerExp(0);
     }
 
     //吃到食物
-    //扣除食物，增加經驗值，經驗值UI變化
+    //扣除食物，增加經驗值，經驗值UI變化，存檔
     public void PlayerEat(int itemNo)
     {
         int exp;
         itemController.ItemDeduct(itemNo);
         exp = itemController.ItemExp(itemNo);
-        playerExp += exp;
+        gameManager.SetPlayerExp(1,exp);
         StartCoroutine(ExpUIAdd(exp));
     }
 
     IEnumerator ExpUIAdd(int exp)
     {
-        while(oldPlayerExp < playerExp)
+        while(oldPlayerExp < gameManager.GetPlayerExp(1))
         {
             oldPlayerExp += 1;
 
-            if(oldPlayerExp >= playerExpUp)
+            if(oldPlayerExp >= gameManager.GetPlayerExp(2))
             {
-                playerLv += 1;
-                gameManager.PlayerLvUp();
+                gameManager.SetPlayerExp(0,1);
+                gameManager_Main.PlayerLvUp();
                 oldPlayerExp = 0;
-                playerExp -= playerExpUp;
+                gameManager.SetPlayerExp(1, (gameManager.GetPlayerExp(2) * -1));
             }
 
-            expText.text = oldPlayerExp + "/" + playerExpUp;
-            expSlider.value = (float)oldPlayerExp / (float)playerExpUp;
+            expText.text = oldPlayerExp + "/" + gameManager.GetPlayerExp(2);
+            expSlider.value = (float)oldPlayerExp / (float)gameManager.GetPlayerExp(2);
             yield return new WaitForSeconds((10f/exp)* 0.1f);
         }
-        expText.text = playerExp + "/" + playerExpUp;
-        expSlider.value = (float)playerExp / (float)playerExpUp;
-        oldPlayerExp = playerExp;
+        expText.text = gameManager.GetPlayerExp(1) + "/" + gameManager.GetPlayerExp(2);
+        expSlider.value = (float)gameManager.GetPlayerExp(1) / (float)gameManager.GetPlayerExp(2);
+        oldPlayerExp = gameManager.GetPlayerExp(1);
     }
 }

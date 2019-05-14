@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SonicBloom.Koreo;
+using UnityEngine.UI;
+using SonicBloom.Koreo.Players;
+using UnityEngine.SceneManagement;
 
 public class RhythmGameController : MonoBehaviour {
 
@@ -26,12 +29,22 @@ public class RhythmGameController : MonoBehaviour {
     //按下特效
     public Stack<GameObject> downEffectObjectPool = new Stack<GameObject>();
 
+    //擊中音符特效
+    public Stack<GameObject> hitEffectObjectPool = new Stack<GameObject>();
+
+    //擊中長音符特效
+    public Stack<GameObject> hitLongEffectObjectPool = new Stack<GameObject>();
+
     //預製體資源
     //音符
     public NoteObject noteObject;
-
     //按下特效
     public GameObject downEffectGo;
+    //擊中音符特效
+    public GameObject hitEffectGo;
+    //擊中長音符特效
+    public GameObject hitLongNoteEffectGo;
+
 
     //引用
     Koreography playingKoreo;
@@ -39,6 +52,10 @@ public class RhythmGameController : MonoBehaviour {
     public AudioSource audioCom;
 
     public List<LaneController> noteLanes = new List<LaneController>();
+
+    SimpleMusicPlayer simpleMusicPlayer;
+
+    public Transform simpleMusicPlayerTrans;
 
     //其他
     [Tooltip("開始播放音頻之前提供的時間量,單位s")]
@@ -93,9 +110,43 @@ public class RhythmGameController : MonoBehaviour {
         }
     }
 
+    float hideHitLevelImageTimeVal;
+
+    public int comboNum;
+
+    public int score;
+
+    public int hp = 10;
+
+    public bool isPauseState;
+
+    bool gameStart;
+
+    //UI
+    public Slider slider;
+
+    public Text scoreText;
+
+    public Image hitLevelImage;
+    public Animator hitLevelImageAnim;
+
+    public Text comboText;
+    public Animator comboTextAnim;
+
+    public GameObject gameOverUI;
+
+    //資源
+    public Sprite[] hitLevelSprites;
+
+    public Koreography kgy;
+
     // Use this for initialization
     void Start () {
         InitializeLeadIn();
+
+        simpleMusicPlayer = simpleMusicPlayerTrans.GetComponent<SimpleMusicPlayer>();
+        simpleMusicPlayer.LoadSong(kgy, 0, false);
+
         for (int i = 0; i < noteLanes.Count; i++)
         {
             noteLanes[i].Initialize(this);
@@ -234,5 +285,82 @@ public class RhythmGameController : MonoBehaviour {
             effectGo.gameObject.SetActive(false);
             stack.Push(effectGo);
         }
+    }
+
+    //顯示命中等級對應的圖片
+    public void ChangHitLevelSprite(int hitLevel)
+    {
+        hideHitLevelImageTimeVal = 1;
+        hitLevelImage.sprite = hitLevelSprites[hitLevel];
+        hitLevelImage.SetNativeSize();
+        //hitLevelImageAnim.SetTrigger("hit");
+        hitLevelImageAnim.Play("UIAnimation", 0, 0);
+        hitLevelImage.gameObject.SetActive(true);
+        if (comboNum >= 5)
+        {
+            comboText.gameObject.SetActive(true);
+            comboText.text = comboNum.ToString();
+            comboTextAnim.Play("UIAnimation", 0, 0);
+        }
+    }
+
+    //隱藏打擊判定UI
+    private void HideHitLevelImage()
+    {
+        hitLevelImage.gameObject.SetActive(false);
+    }
+
+    //隱藏comboUI
+    public void HideComboNumText()
+    {
+        comboText.gameObject.SetActive(false);
+    }
+
+    //分數更新
+    public void UpdateScoreText(int addNum)
+    {
+        score += addNum;
+        scoreText.text = score.ToString();
+    }
+
+    //血量更新
+    public void UpdateHp()
+    {
+        hp = hp - 2;
+        slider.value = (float)hp / 10;
+        if (hp == 0)
+        {
+            isPauseState = true;
+            simpleMusicPlayer.Pause();
+            gameOverUI.SetActive(true);
+        }
+    }
+
+    //音樂暫停
+    public void PauseMusic()
+    {
+        if (!gameStart)
+        {
+            return;
+        }
+        simpleMusicPlayer.Pause();
+    }
+
+    //音樂播放
+    public void PlayMusic()
+    {
+        simpleMusicPlayer.Play();
+    }
+
+    //重玩
+    public void RePlay()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    //返回主畫面
+    public void ReturnToMain()
+    {
+        SceneManager.LoadScene(0);
     }
 }

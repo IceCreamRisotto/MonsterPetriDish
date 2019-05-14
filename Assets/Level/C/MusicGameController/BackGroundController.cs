@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SonicBloom.Koreo;
+using SonicBloom.Koreo.Players;
+using UnityEngine.SceneManagement;
 
 public class BackGroundController : MonoBehaviour
 {
@@ -112,12 +114,12 @@ public class BackGroundController : MonoBehaviour
             for (int j = 0; j < starLanes.Count; j++)
             {
                 StarController lane = starLanes[j];
-                if (noteID > 6)
+                if (noteID > 2)
                 {
-                    noteID = noteID - 6;
-                    if (noteID > 6)
+                    noteID = noteID - 2;
+                    if (noteID > 2)
                     {
-                        noteID = noteID - 6;
+                        noteID = noteID - 2;
                     }
 
                 }

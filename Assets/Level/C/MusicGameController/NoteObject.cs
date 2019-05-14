@@ -55,11 +55,11 @@ public class NoteObject : MonoBehaviour {
 
         if (isLongNoteStart)
         {
-            spriteNum += 6;
+            spriteNum += 2;
         }
         else if (isLongNoteEnd)
         {
-            spriteNum += 12;
+            spriteNum += 4;
         }
 
         visuals.SetInteger("Stly", spriteNum);
