@@ -108,13 +108,13 @@ public class BackGroundController : MonoBehaviour
         for (int i = 0; i < rawEvents.Count; i++)
         {
             KoreographyEvent evt = rawEvents[i];
-            int noteID = evt.GetIntValue();
+            int noteID = Random.Range(1,4);
 
             //編列所有音軌
             for (int j = 0; j < starLanes.Count; j++)
             {
                 StarController lane = starLanes[j];
-                if (noteID > 2)
+                /*if (noteID > 2)
                 {
                     noteID = noteID - 2;
                     if (noteID > 2)
@@ -122,7 +122,7 @@ public class BackGroundController : MonoBehaviour
                         noteID = noteID - 2;
                     }
 
-                }
+                }*/
                 if (lane.DoesMatch(noteID))
                 {
                     lane.AddEventToLane(evt);

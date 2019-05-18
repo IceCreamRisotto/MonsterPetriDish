@@ -142,7 +142,7 @@ public class LaneController : MonoBehaviour {
                     if (longNoteHitEffectGo.activeSelf)
                     {
                         gameController.ChangHitLevelSprite(lanes);
-                        CreateHitLongEffect();
+                        //CreateHitLongEffect();
                     }
                     timeVal = 0;
                 }
@@ -168,7 +168,7 @@ public class LaneController : MonoBehaviour {
     public void Initialize(RhythmGameController controller)
     {
         gameController = controller;
-        hitLongEffectGo = gameController.GetFreshEffectObject(gameController.hitLongEffectObjectPool, gameController.hitLongNoteEffectGo);
+        //hitLongEffectGo = gameController.GetFreshEffectObject(gameController.hitLongEffectObjectPool, gameController.hitLongNoteEffectGo);
         lanes = gameController.GetLanes();
     }
 
@@ -237,6 +237,7 @@ public class LaneController : MonoBehaviour {
     //
     //生成特效的有關方法
     //
+    /*
     void CreateDownEffect()
     {
         GameObject downEffectGo = gameController.GetFreshEffectObject(gameController.downEffectObjectPool, gameController.downEffectGo);
@@ -254,7 +255,7 @@ public class LaneController : MonoBehaviour {
         longNoteHitEffectGo.SetActive(true);
         hitLongEffectGo.SetActive(true);
         hitLongEffectGo.transform.position = targetVisuals.position;
-    }   
+    }   */
 
     //檢測是否有擊中音符對象
     //如果是，他將執行命中並刪除
@@ -277,7 +278,7 @@ public class LaneController : MonoBehaviour {
                     if (noteObject.isLongNoteStart)
                     {
                         hasLongNote = true;
-                        CreateHitLongEffect();
+                        //CreateHitLongEffect();
                     }//關閉長音符
                     else if (noteObject.isLongNoteEnd)
                     {
@@ -285,7 +286,7 @@ public class LaneController : MonoBehaviour {
                     }
                     else //生成一個打擊特效
                     {
-                        CreateHitEffect();
+                        //CreateHitEffect();
                     }
 
                     //增加combo
@@ -304,12 +305,12 @@ public class LaneController : MonoBehaviour {
             }
             else
             {
-                CreateDownEffect();
+                //CreateDownEffect();
             }
         }
         else//當線上沒有音符時
         {
-            CreateDownEffect();
+            //CreateDownEffect();
         }
     }
 
