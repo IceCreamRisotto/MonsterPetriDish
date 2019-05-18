@@ -38,7 +38,7 @@ public class M : MonoBehaviour {
 
     private void Update()
     {
-
+        click_off();
 
         if (coRou == null) {//等太久會睡覺
             coRou = StartCoroutine(sleep());
@@ -138,10 +138,19 @@ public class M : MonoBehaviour {
     }
 
     public void click_off() {
-        coRou = null;
-        coRou2 = null;
-        states = 1;
-        animator.SetInteger("states", states);
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("click")||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("click_magic") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("click_mushroom")) {
+
+            AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
+
+            if (info.normalizedTime >= 1.0f) {
+                coRou = null;
+                coRou2 = null;
+                states = 1;
+                animator.SetInteger("states", states);
+            }
+        }
     }
 
 
