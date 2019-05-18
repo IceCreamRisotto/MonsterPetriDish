@@ -33,7 +33,6 @@ public class NoteObject : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //暫停
-        if(gameController!=null)
         if (gameController.isPauseState)
         {
             return;

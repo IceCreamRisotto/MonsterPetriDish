@@ -41,14 +41,12 @@ public class RhythmGameController : MonoBehaviour {
     //預製體資源
     //音符
     public NoteObject noteObject;
-    /*
     //按下特效
     public GameObject downEffectGo;
     //擊中音符特效
     public GameObject hitEffectGo;
     //擊中長音符特效
     public GameObject hitLongNoteEffectGo;
-    */
 
 
     //引用
@@ -383,13 +381,13 @@ public class RhythmGameController : MonoBehaviour {
     //重玩
     public void RePlay()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
     //返回主畫面
     public void ReturnToMain()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     //獲取此遊戲按鍵數量

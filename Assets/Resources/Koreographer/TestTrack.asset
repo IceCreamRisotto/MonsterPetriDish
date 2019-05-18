@@ -97,82 +97,8 @@ MonoBehaviour:
     mEndSample: 808500
   - mStartSample: 819807
     mEndSample: 819807
-  - mStartSample: 866923
-    mEndSample: 866923
-  - mStartSample: 904615
-    mEndSample: 904615
-  - mStartSample: 915923
-    mEndSample: 915923
-  - mStartSample: 927230
-    mEndSample: 927230
-  - mStartSample: 940423
-    mEndSample: 940423
-  - mStartSample: 964923
-    mEndSample: 964923
-  - mStartSample: 976230
-    mEndSample: 976230
-  - mStartSample: 983769
-    mEndSample: 983769
-  - mStartSample: 1000730
-    mEndSample: 1000730
-  - mStartSample: 1017692
-    mEndSample: 1017692
-  - mStartSample: 1025230
-    mEndSample: 1025230
-  - mStartSample: 1061509
-    mEndSample: 1061509
-  - mStartSample: 1110980
-    mEndSample: 1110980
-  - mStartSample: 1122288
-    mEndSample: 1122288
-  - mStartSample: 1135009
-    mEndSample: 1135009
-  - mStartSample: 1160451
-    mEndSample: 1160451
-  - mStartSample: 1178826
-    mEndSample: 1178826
-  - mStartSample: 1195788
-    mEndSample: 1195788
-  - mStartSample: 1211336
-    mEndSample: 1211336
-  - mStartSample: 1221230
-    mEndSample: 1221230
-  - mStartSample: 1232538
-    mEndSample: 1232538
-  - mStartSample: 1256567
-    mEndSample: 1256567
-  - mStartSample: 1291903
-    mEndSample: 1291903
-  - mStartSample: 1306038
-    mEndSample: 1306038
-  - mStartSample: 1328653
-    mEndSample: 1328653
-  - mStartSample: 1389432
-    mEndSample: 1389432
-  - mStartSample: 1397913
-    mEndSample: 1397913
-  - mStartSample: 1406394
-    mEndSample: 1406394
-  - mStartSample: 1450211
-    mEndSample: 1450211
-  - mStartSample: 1462932
-    mEndSample: 1462932
-  - mStartSample: 1486961
-    mEndSample: 1486961
-  - mStartSample: 1499682
-    mEndSample: 1499682
-  - mStartSample: 1525125
-    mEndSample: 1525125
-  - mStartSample: 1537846
-    mEndSample: 1537846
-  - mStartSample: 1546326
-    mEndSample: 1546326
-  - mStartSample: 1560461
-    mEndSample: 1560461
-  - mStartSample: 1573182
-    mEndSample: 1573182
-  - mStartSample: 1583076
-    mEndSample: 1583076
+  - mStartSample: 842423
+    mEndSample: 842423
   _SerializedPayloadTypes:
   - SonicBloom.Koreo.IntPayload
   _AssetPayloads: []
@@ -186,87 +112,50 @@ MonoBehaviour:
   _GradientPayloads: []
   _GradientPayloadIdxs: 
   _IntPayloads:
-  - mIntVal: 1
-  - mIntVal: 1
+  - mIntVal: 3
+  - mIntVal: 5
   - mIntVal: 2
   - mIntVal: 2
   - mIntVal: 2
-  - mIntVal: 1
-  - mIntVal: 1
-  - mIntVal: 1
+  - mIntVal: 3
+  - mIntVal: 5
   - mIntVal: 2
   - mIntVal: 2
   - mIntVal: 2
-  - mIntVal: 1
-  - mIntVal: 1
-  - mIntVal: 2
-  - mIntVal: 2
-  - mIntVal: 2
-  - mIntVal: 1
-  - mIntVal: 1
-  - mIntVal: 1
-  - mIntVal: 2
+  - mIntVal: 3
+  - mIntVal: 5
   - mIntVal: 1
   - mIntVal: 2
   - mIntVal: 1
   - mIntVal: 1
   - mIntVal: 1
-  - mIntVal: 1
+  - mIntVal: 3
+  - mIntVal: 5
   - mIntVal: 2
   - mIntVal: 2
+  - mIntVal: 4
+  - mIntVal: 6
   - mIntVal: 1
   - mIntVal: 2
-  - mIntVal: 1
-  - mIntVal: 2
-  - mIntVal: 1
-  - mIntVal: 1
-  - mIntVal: 2
+  - mIntVal: 3
+  - mIntVal: 5
+  - mIntVal: 4
   - mIntVal: 2
   - mIntVal: 2
-  - mIntVal: 1
   - mIntVal: 2
+  - mIntVal: 4
+  - mIntVal: 6
   - mIntVal: 1
+  - mIntVal: 3
   - mIntVal: 2
-  - mIntVal: 1
-  - mIntVal: 1
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  - mIntVal: 0
-  _IntPayloadIdxs: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000
+  - mIntVal: 2
+  - mIntVal: 2
+  - mIntVal: 2
+  - mIntVal: 2
+  - mIntVal: 2
+  - mIntVal: 2
+  - mIntVal: 2
+  _IntPayloadIdxs: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a000000
   _SpectrumPayloads: []
   _SpectrumPayloadIdxs: 
   _TextPayloads: []
