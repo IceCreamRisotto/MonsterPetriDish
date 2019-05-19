@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackgroundMove : MonoBehaviour {
+public class explore_CloudMove : MonoBehaviour {
     public float speed;
     private Transform left_lmt, right_lmt;
     private void Awake()
@@ -19,7 +19,7 @@ public class BackgroundMove : MonoBehaviour {
 
     private void re_speed()
     {
-        speed = GameObject.Find("grass").GetComponent<FloorMove>().speed/2f;
+        speed = GameObject.Find("grass").GetComponent<FloorMove>().speed / 2.5f;
     }
 
     void move()
