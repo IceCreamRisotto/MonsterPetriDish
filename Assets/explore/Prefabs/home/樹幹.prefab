@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8065f63957ea2f34e89f8433d38b026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
 --- !u!114 &114640346424527384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8065f63957ea2f34e89f8433d38b026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
 --- !u!222 &222281047838241010
 CanvasRenderer:
   m_ObjectHideFlags: 1

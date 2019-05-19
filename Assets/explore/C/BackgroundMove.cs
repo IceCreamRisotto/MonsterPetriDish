@@ -5,6 +5,7 @@ using UnityEngine;
 public class BackgroundMove : MonoBehaviour {
     public float speed;
     private Transform left_lmt, right_lmt;
+    public GameObject floor;
     private void Awake()
     {
         left_lmt = GameObject.Find("背景移動").GetComponent<parameter>().left_lmt;
@@ -19,7 +20,7 @@ public class BackgroundMove : MonoBehaviour {
 
     private void re_speed()
     {
-        speed = GameObject.Find("grass").GetComponent<FloorMove>().speed/2f;
+        speed = floor.GetComponent<FloorMove>().speed/2f;
     }
 
     void move()

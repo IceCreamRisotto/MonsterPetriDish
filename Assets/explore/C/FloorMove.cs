@@ -32,4 +32,6 @@ public class FloorMove : MonoBehaviour {
             transform.position = new Vector3(right_lmt.position.x, transform.position.y, transform.position.z);
         }
     }
+
+
 }

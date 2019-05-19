@@ -9,32 +9,32 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1534019157476140}
+  m_RootGameObject: {fileID: 1433624950938970}
   m_IsPrefabParent: 1
---- !u!1 &1534019157476140
+--- !u!1 &1433624950938970
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 224549336665073918}
-  - component: {fileID: 222024882082443236}
-  - component: {fileID: 114136650367839734}
-  - component: {fileID: 114504244145074868}
+  - component: {fileID: 224570618268874512}
+  - component: {fileID: 222727845845401388}
+  - component: {fileID: 114254818538696436}
+  - component: {fileID: 114826885560980062}
   m_Layer: 5
-  m_Name: grass
+  m_Name: forest_tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114136650367839734
+--- !u!114 &114254818538696436
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1534019157476140}
+  m_GameObject: {fileID: 1433624950938970}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -48,7 +48,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0c746478efbda39469d2c87ab46bfe7a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da6a6286a0d4043d1b91c1d6f94bf1ef, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -56,31 +56,32 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114504244145074868
+--- !u!114 &114826885560980062
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1534019157476140}
+  m_GameObject: {fileID: 1433624950938970}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8065f63957ea2f34e89f8433d38b026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!222 &222024882082443236
+  speed: 0
+--- !u!222 &222727845845401388
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1534019157476140}
---- !u!224 &224549336665073918
+  m_GameObject: {fileID: 1433624950938970}
+--- !u!224 &224570618268874512
 RectTransform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1534019157476140}
+  m_GameObject: {fileID: 1433624950938970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -190, y: -145, z: 0}
+  m_LocalPosition: {x: -227, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -88,6 +89,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -190, y: -145}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -227, y: 0}
+  m_SizeDelta: {x: 213, y: 223}
   m_Pivot: {x: 0.5, y: 0.5}
