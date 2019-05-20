@@ -141,13 +141,28 @@ public class RhythmGameController : MonoBehaviour {
     public GameObject gameOverUI;
 
     //資源
+
+    GameManager gameManager;
+
     public Sprite[] hitLevelSprites;
 
+    [Header("當前歌曲")]
     public Koreography kgy;
+
+    [Header("歌曲選單")]
+    public Koreography[] kgyList;
 
     // Use this for initialization
     void Start () {
         InitializeLeadIn();
+
+        gameManager = FindObjectOfType<GameManager>();
+
+        //修改當前播放歌曲
+        if(gameManager.nowSong!=-1)
+            kgy = kgyList[gameManager.nowSong];
+
+        //修改當前歌曲難度
 
         simpleMusicPlayer = simpleMusicPlayerTrans.GetComponent<SimpleMusicPlayer>();
         simpleMusicPlayer.LoadSong(kgy, 0, false);

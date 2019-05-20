@@ -98,13 +98,16 @@ public class BackGroundController : MonoBehaviour
             starLanes[i].Initialize(this);
         }
 
+        //與控制器同步ID
+        eventID = gameController.eventID;
+
         //採取到koreograpy對象
         playingKoreo = Koreographer.Instance.GetKoreographyAtIndex(0);
         //獲取事件軌跡
         KoreographyTrackBase rhythmTrack = playingKoreo.GetTrackByID(eventID);
         //獲取事件
         List<KoreographyEvent> rawEvents = rhythmTrack.GetAllEvents();
-
+        
         for (int i = 0; i < rawEvents.Count; i++)
         {
             KoreographyEvent evt = rawEvents[i];

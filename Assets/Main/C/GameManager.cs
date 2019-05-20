@@ -23,7 +23,23 @@ public class GameManager : MonoBehaviour {
     public int[] items;
 
     //歌曲列表
+    [Header("歌曲列表")]
     public string[] songslist;
+
+    //當前副本播放歌曲
+    [Header("當前播放歌曲")]
+    public int nowSong;
+
+    //當前預設難度
+    [Header("當前預設難度")]
+    public int nowSongLv;
+
+    //當前預設難度
+    [Header("難度文字")]
+    public string[] nowSongLvString;
+
+    //副本初始化物件
+    PauseButton pauseButton;
 
 
     private void Awake()
@@ -86,6 +102,12 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
+    //副本專用載入物件初始化
+    public void InitializationFormLevel(PauseButton pause)
+    {
+        pauseButton = pause;
+    }
+
     //角色經驗值相關資料提取
     //0=角色等級,1=角色經驗值,2=角色經驗值上限
     public int GetPlayerExp(int no)
@@ -124,5 +146,18 @@ public class GameManager : MonoBehaviour {
     void ItemDataSave()
     {
         PlayerPrefs.SetInt("items1", items[0]);
+    }
+
+    //副本初次選單歌曲Button輸入
+    public void NewButtonOn(SongIntroduction buttonObject,int no)
+    {
+        buttonObject.Initialization(this, no, songslist[no]);
+        buttonObject.gameObject.SetActive(true);
+    }
+
+    
+    public void PlayTestSong()
+    {
+        pauseButton.PlayTestSong();
     }
 }
