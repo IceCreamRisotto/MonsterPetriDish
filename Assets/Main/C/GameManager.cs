@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour {
     [Header("物件剩餘量")]
     public int[] items;
 
+    //歌曲列表
+    public string[] songslist;
+
 
     private void Awake()
     {
