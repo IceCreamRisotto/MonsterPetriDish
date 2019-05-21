@@ -6,8 +6,6 @@ using Fungus;
 
 public class PauseButton : MonoBehaviour {
 
-    public bool newPlay;
-
     public Sprite[] sprites;
 
     public RhythmGameController rhythmGameController;
@@ -16,9 +14,15 @@ public class PauseButton : MonoBehaviour {
 
     Image image;
 
-    public Slider setSlider;
+    public Text setSongName;
 
-    public Dropdown setDropdown;
+    public Image setSongButton;
+
+    Text setSongButtonText;
+
+    //public Slider setSlider;
+
+    //public Dropdown setDropdown;
 
     List<string> temoNames;
 
@@ -50,18 +54,26 @@ public class PauseButton : MonoBehaviour {
         image = GetComponent<Image>();
 
         songLVButtonText = songLVButton.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
+        setSongButtonText = setSongButton.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
 
-        if(gameManager!=null)
+        /*if(gameManager!=null)
         {
             SetUIInitialize();
-        }
-        if(newPlay)
+        }*/
+        if(gameManager.newSongPlay)
         {
-            newPlay = false;
+            gameManager.newSongPlay = false;
             NewFungusPauseOrPlayMusic();
             NewSongButton();
         }
         gameManager.InitializationFormLevel(this);
+
+        if (gameManager.nowSong != -1)
+            setSongName.text = gameManager.songslist[gameManager.nowSong];
+        else
+            Debug.Log("歌曲未選擇，歌曲名未載入");
+        setSongButton.sprite = songLVButtonImage[gameManager.nowSongLv];
+        setSongButtonText.text = gameManager.nowSongLvString[gameManager.nowSongLv];
     }
 
     void NewFungusPauseOrPlayMusic()
@@ -108,6 +120,8 @@ public class PauseButton : MonoBehaviour {
         }
     }
 
+    //設定的歌曲下拉選單置入
+    /*
     void SetUIInitialize()
     {
         setDropdown.options.Clear();
@@ -119,6 +133,7 @@ public class PauseButton : MonoBehaviour {
             setDropdown.options.Add(temoData);
         }
     }
+    */
 
     public void PlayTestSong()
     {
@@ -129,5 +144,21 @@ public class PauseButton : MonoBehaviour {
         cdAnim.CDPlay();
         songLVButton.sprite = songLVButtonImage[gameManager.nowSongLv];
         songLVButtonText.text = gameManager.nowSongLvString[gameManager.nowSongLv];
+    }
+
+    //難度Button點擊
+    public void TestLVButtonImage()
+    {
+        if (gameManager.nowSongLv == 2)
+            gameManager.nowSongLv = 0;
+        else
+            gameManager.nowSongLv += 1;
+        songLVButton.sprite = songLVButtonImage[gameManager.nowSongLv];
+        songLVButtonText.text = gameManager.nowSongLvString[gameManager.nowSongLv];
+    }
+
+    public void ReNewPlay()
+    {
+        gameManager.NewSongPlayTrue();
     }
 }

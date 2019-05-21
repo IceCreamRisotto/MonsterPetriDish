@@ -10,6 +10,7 @@ public class GameManager_Main : MonoBehaviour {
     //已經變成探索系統管理器的遊戲管理器
     //沒有好好分類的遊戲管理器
 
+    GameManager gameManager;
 
     public int explorationNo;
     public Flowchart gamemanagerFlowchart;
@@ -60,6 +61,7 @@ public class GameManager_Main : MonoBehaviour {
 
     public void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
 
         //探索確認選單，文本更新處
         explorText[0,0] = "Level.1  家";
@@ -232,5 +234,10 @@ public class GameManager_Main : MonoBehaviour {
         gamemanagerFlowchart.SetIntegerVariable("playerLv", playerExp.GetPlayerLv());
         Block LvUp = gamemanagerFlowchart.FindBlock("LvUp");
         gamemanagerFlowchart.ExecuteBlock("LvUp");
+    }
+
+    public void NewSongPlayTrue()
+    {
+        gameManager.NewSongPlayTrue();
     }
 }

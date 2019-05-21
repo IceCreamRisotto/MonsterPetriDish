@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     public int playerExpUp = 100;
 
     //0=角色等級,1=角色經驗值,2=角色經驗值上限
+    [Header("等級/經驗值/經驗值上限")]
     public int[] playerExpManager=new int[3];
 
 
@@ -21,6 +22,10 @@ public class GameManager : MonoBehaviour {
     //對應編號物件剩餘量
     [Header("物件剩餘量")]
     public int[] items;
+
+    //初次副本場景觸發器
+    [Header("初次副本場景觸發器")]
+    public bool newSongPlay;
 
     //歌曲列表
     [Header("歌曲列表")]
@@ -41,6 +46,7 @@ public class GameManager : MonoBehaviour {
     //副本初始化物件
     PauseButton pauseButton;
 
+    //當前探索編號
     public int explorationNumber;
 
     private void Awake()
@@ -51,7 +57,6 @@ public class GameManager : MonoBehaviour {
             instance = this;
             DontDestroyOnLoad(this);
             name = "通用事件管理";
-            explorationNumber = 0;
         }
         else if(this!=instance) //若已經有不可破壞物件，刪除自己
         {
@@ -161,5 +166,11 @@ public class GameManager : MonoBehaviour {
     public void PlayTestSong()
     {
         pauseButton.PlayTestSong();
+    }
+
+    //副本載入(初次場景bool打勾)
+    public void NewSongPlayTrue()
+    {
+        newSongPlay = true;
     }
 }

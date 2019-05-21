@@ -19,6 +19,11 @@ public class CDAnim : MonoBehaviour {
         rectTransform = GetComponent<RectTransform>();
     }
 
+    public void CDPlay(float second)
+    {
+        Invoke("CDPlay", second);
+    }
+
     public void CDPlay()
     {
         StartCoroutine(TransferCD());

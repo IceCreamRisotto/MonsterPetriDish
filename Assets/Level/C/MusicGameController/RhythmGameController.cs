@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class RhythmGameController : MonoBehaviour {
 
+    [Header("固定難度為困難(測試用)")]
+    public bool hardOnly;
+
     [Header("當前按鍵數量")]
     public int lanes=2;
 
@@ -152,17 +155,31 @@ public class RhythmGameController : MonoBehaviour {
     [Header("歌曲選單")]
     public Koreography[] kgyList;
 
-    // Use this for initialization
-    void Start () {
+    private void Awake()
+    {
         InitializeLeadIn();
 
         gameManager = FindObjectOfType<GameManager>();
 
         //修改當前播放歌曲
-        if(gameManager.nowSong!=-1)
+        if (gameManager.nowSong != -1)
             kgy = kgyList[gameManager.nowSong];
 
+        string[] songLV = new string[3];
+        songLV[0] = "Eazy";
+        songLV[1] = "Normal";
+        songLV[2] = "Hard";
         //修改當前歌曲難度
+        eventID = songLV[gameManager.nowSongLv];
+
+        if (hardOnly)
+            eventID = "Hard";
+    }
+
+    // Use this for initialization
+    void Start () {
+        
+
 
         simpleMusicPlayer = simpleMusicPlayerTrans.GetComponent<SimpleMusicPlayer>();
         simpleMusicPlayer.LoadSong(kgy, 0, false);
