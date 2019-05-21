@@ -83,8 +83,8 @@ public class loading : MonoBehaviour {
         if (level == "Explore") {
             explorationNumber = GameObject.Find("GameManager_Main").GetComponent<GameManager_Main>().explorationNo;
             gameManager.explorationNumber = explorationNumber;
-            Debug.Log(explorationNumber);
-            Debug.Log(gameManager.explorationNumber);
+            //Debug.Log(explorationNumber);
+            //Debug.Log(gameManager.explorationNumber);
         }
     }
 

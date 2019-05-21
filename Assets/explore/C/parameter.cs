@@ -2,12 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Fungus;
 
 public class parameter : MonoBehaviour {
     public float floor_speed;
     public Transform left_lmt, right_lmt;
 
     public Animator animator;
+
+    public Flowchart flowchart;
+    public int exploreBackground {
+        get { return flowchart.GetIntegerVariable("scence"); }
+        set { flowchart.SetIntegerVariable("scence", value); }
+    }
+
+    private void Start()
+    {
+        exploreBackground = GameObject.Find("通用事件管理").GetComponent<GameManager>().explorationNumber;
+    }
 
     private void Update()
     {
