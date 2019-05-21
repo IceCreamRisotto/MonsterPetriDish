@@ -62,9 +62,9 @@ public class GameManager_Main : MonoBehaviour {
     {
 
         //探索確認選單，文本更新處
-        explorText[0,0] = "Level.1  滾筒木屋";
+        explorText[0,0] = "Level.1  家";
         explorText[0,1] = "探索時間 半 小時";
-        explorText[1,0] = "Level.2  洞窟";
+        explorText[1,0] = "Level.2  森林";
         explorText[1,1] = "探索時間 1 小時";
 
         //a= GetTime(GetTimeStamp());
@@ -139,14 +139,14 @@ public class GameManager_Main : MonoBehaviour {
         explorationStartTime = GetTime(GetTimeStamp());
         //PlayerPrefs.SetString("explorationStartTime", explorationStartTime.ToString());
         //判斷哪一個探索關卡，給予endTime相應的加長時間
-        if (explorationNumber == 1)//滾筒木屋
+        if (explorationNumber == 1)//滾筒木屋   //家
         {
             //explorationEnd = new DateTime(nullTime.Year, nullTime.Month, nullTime.Day, nullTime.Hour+1, nullTime.Minute, nullTime.Second);
             //explorationEndTime = new DateTime(explorationStartTime.Year, explorationStartTime.Month, explorationStartTime.Day, explorationStartTime.Hour, explorationStartTime.Minute+30, explorationStartTime.Second);
             explorationEndTime = explorationStartTime.AddMinutes(30);
             PlayerPrefs.SetString("explorationEndTime", explorationEndTime.ToString());
         }
-        if (explorationNumber == 2)//洞窟
+        if (explorationNumber == 2)//洞窟        //森林
         {
             //explorationEnd = new DateTime(nullTime.Year, nullTime.Month, nullTime.Day, nullTime.Hour+1, nullTime.Minute, nullTime.Second);
             //explorationEndTime = new DateTime(explorationStartTime.Year, explorationStartTime.Month, explorationStartTime.Day, explorationStartTime.Hour + 1, explorationStartTime.Minute, explorationStartTime.Second);

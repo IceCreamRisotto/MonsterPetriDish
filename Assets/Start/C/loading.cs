@@ -10,6 +10,14 @@ public class loading : MonoBehaviour {
     public Text load_text;
     public string level;
 
+    public int explorationNumber;
+    GameManager gameManager;
+
+    void Awake()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
+
     public void clickButton() {
         loadingImage.SetActive(true);
         StartCoroutine(loadLevelWithBar(level));
@@ -38,6 +46,7 @@ public class loading : MonoBehaviour {
         }
 
         TurnToScreen();//旋轉螢幕
+        exploreChange();//如果選擇探索(explore),設定explorationNumber為選擇的場景
 
         async.allowSceneActivation = true;
     }
@@ -67,6 +76,15 @@ public class loading : MonoBehaviour {
             Screen.autorotateToLandscapeRight = false;
             Screen.autorotateToPortrait = true;
             Screen.autorotateToPortraitUpsideDown = true;
+        }
+    }
+
+    public void exploreChange() {
+        if (level == "Explore") {
+            explorationNumber = GameObject.Find("GameManager_Main").GetComponent<GameManager_Main>().explorationNo;
+            gameManager.explorationNumber = explorationNumber;
+            Debug.Log(explorationNumber);
+            Debug.Log(gameManager.explorationNumber);
         }
     }
 

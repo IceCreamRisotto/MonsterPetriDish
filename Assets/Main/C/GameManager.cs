@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour {
     //副本初始化物件
     PauseButton pauseButton;
 
+    public int explorationNumber;
 
     private void Awake()
     {
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour {
             instance = this;
             DontDestroyOnLoad(this);
             name = "通用事件管理";
+            explorationNumber = 0;
         }
         else if(this!=instance) //若已經有不可破壞物件，刪除自己
         {
