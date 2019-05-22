@@ -49,7 +49,8 @@ public class GameManager : MonoBehaviour {
     //當前探索編號
     public int explorationNumber;
 
-    //public string[] GetProp;//=new string[15];xxx
+    //探索遭遇次數
+    public int eventCount;
 
     private void Awake()
     {
@@ -65,8 +66,7 @@ public class GameManager : MonoBehaviour {
             Debug.Log("刪除" + sceneName + "的" + name);
             Destroy(this);
         }
-
-        //GetProp = new string[15];xxx
+        eventCount = 0;
     }
 
     // Use this for initialization
