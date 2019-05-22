@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour {
     //當前探索編號
     public int explorationNumber;
 
+    public string[] GetProp;//=new string[15];
+
     private void Awake()
     {
         string sceneName = SceneManager.GetActiveScene().name;
@@ -63,8 +65,8 @@ public class GameManager : MonoBehaviour {
             Debug.Log("刪除" + sceneName + "的" + name);
             Destroy(this);
         }
-        
 
+        GetProp = new string[15];
     }
 
     // Use this for initialization
@@ -95,13 +97,18 @@ public class GameManager : MonoBehaviour {
         playerExpManager[2] = playerExpUp;
 
         //物件剩餘量提取
-        if (PlayerPrefs.HasKey("items1"))
-            items[0] = PlayerPrefs.GetInt("items1");
-        else
+        for (int i = 0; i < items.Length; i++)
         {
-            Debug.Log("第一項物件剩餘量為空");
-            items[0] = 0;
+            if (PlayerPrefs.HasKey("item" + i))
+            {
+                items[i] = PlayerPrefs.GetInt("item" + i);
+            }
+            else
+            {
+                Debug.Log("第" + i + "項物件剩餘量為空");
+            }
         }
+        
     }
 	
 	// Update is called once per frame
@@ -152,7 +159,10 @@ public class GameManager : MonoBehaviour {
     //物品相關存檔
     void ItemDataSave()
     {
-        PlayerPrefs.SetInt("items1", items[0]);
+        for(int i=0;i<items.Length;i++)
+        {
+            PlayerPrefs.SetInt("item" + i, items[i]);
+        }
     }
 
     //副本初次選單歌曲Button輸入
