@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9cd349aa16104384d98c6c53df4988a6
-timeCreated: 1558528820
+guid: 917aa86f0db7459499184180cf7e41cc
+timeCreated: 1558528785
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: "\u53F2\u840A\u59C6\u7403"
+    21300000: "\u773C\u6DDA"
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -88,13 +88,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u53F2\u840A\u59C6\u7403"
+      name: "\u773C\u6DDA"
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
-        width: 463
-        height: 464
+        y: 53
+        width: 1742
+        height: 2078
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
