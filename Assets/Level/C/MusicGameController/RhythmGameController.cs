@@ -421,7 +421,32 @@ public class RhythmGameController : MonoBehaviour {
     //返回主畫面
     public void ReturnToMain()
     {
+        TurnToScreen("Main");
         SceneManager.LoadScene(1);
+    }
+
+    private void TurnToScreen(string level)
+    {   //畫面轉向
+        if (level == "Level")
+        {
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
+
+            Screen.orientation = ScreenOrientation.AutoRotation;
+            Screen.autorotateToLandscapeLeft = true;
+            Screen.autorotateToLandscapeRight = true;
+            Screen.autorotateToPortrait = false;
+            Screen.autorotateToPortraitUpsideDown = false;
+        }
+        else
+        {
+            Screen.orientation = ScreenOrientation.Portrait;
+
+            Screen.orientation = ScreenOrientation.AutoRotation;
+            Screen.autorotateToLandscapeLeft = false;
+            Screen.autorotateToLandscapeRight = false;
+            Screen.autorotateToPortrait = true;
+            Screen.autorotateToPortraitUpsideDown = true;
+        }
     }
 
     //獲取此遊戲按鍵數量

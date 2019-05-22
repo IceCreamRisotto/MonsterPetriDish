@@ -22,7 +22,7 @@ public class TestController : MonoBehaviour {
     {
         debugSE.Play();
         Debug.Log("所有物件增加10份");
-        for(int i=0;i>gameManager.items.Length;i++)
+        for(int i=0;i<gameManager.items.Length;i++)
         {
             gameManager.items[i] += 10;
         }
