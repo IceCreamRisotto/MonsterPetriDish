@@ -7,11 +7,11 @@ public class ConfirmGetProp : MonoBehaviour {
 
     GameManager gameManager;
     Flowchart flowchart_par;
-    public string Prop;
+    public int Prop;
     public int PropLength;
 
-    public string PropNumber {
-        get { return flowchart_par.GetStringVariable("PropNumber"); }
+    public int PropNumber {
+        get { return flowchart_par.GetIntegerVariable("PropNumber"); }
     }
 
     private void Awake()
@@ -23,18 +23,19 @@ public class ConfirmGetProp : MonoBehaviour {
     public void GetProp() {
 
         Prop = PropNumber;
+        gameManager.SetItems(PropNumber, 1);
         //Debug.Log(Prop);
-        PropLength = gameManager.GetProp.Length;
+        //PropLength = gameManager.GetProp.Length;
         //Debug.Log(PropLength);
 
-        for (int i = 0; i < PropLength; i++)
-        {
-            //Debug.Log("成功");
-            if (gameManager.GetProp[i] ==null)
-            {
-                gameManager.GetProp[i] = PropNumber;
-                break;
-            }
-        }
+        //for (int i = 0; i < PropLength; i++)
+        //{
+        //    Debug.Log("成功");
+        //    if (gameManager.GetProp[i] ==null)
+        //    {
+        //        gameManager.GetProp[i] = PropNumber;
+        //        break;
+        //    }
+        //}
     }
 }

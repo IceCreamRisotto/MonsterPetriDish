@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour {
     //當前探索編號
     public int explorationNumber;
 
-    public string[] GetProp;//=new string[15];
+    //public string[] GetProp;//=new string[15];xxx
 
     private void Awake()
     {
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour {
             Destroy(this);
         }
 
-        GetProp = new string[15];
+        //GetProp = new string[15];xxx
     }
 
     // Use this for initialization
