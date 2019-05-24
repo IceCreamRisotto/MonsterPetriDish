@@ -10,6 +10,14 @@ public class GameManager : MonoBehaviour
     //全域GameManager
     static GameManager instance;
 
+    //小雞名稱
+    [Header("小雞名稱")]
+    public string playerName;
+
+    //小雞進化狀態
+    [Header("小雞進化序號")]
+    public int playerStatusNo;
+
     //角色經驗值相關
     //角色經驗值上限變數(暫時統一100)
     public int playerExpUp = 100;
@@ -18,12 +26,28 @@ public class GameManager : MonoBehaviour
     [Header("等級/經驗值/經驗值上限")]
     public int[] playerExpManager = new int[3];
 
+    //文本部分
+
+    [Header("職業名稱")]
+    public string[] playerCareer;
+
+    [Header("各階段小雞擅長技能")]
+    public string[] playerSpecialSkill;
+
+    [Header("技能特性")]
+    public string[] playerSpecialSkillData;
+
 
     //物品管理相關
     //對應編號物件剩餘量
     [Header("物件剩餘量")]
     public int[] items;
 
+    //根據關卡獲得物件量
+    [Header("根據關卡獲得物件量")]
+    public int[] explores;
+
+    //副本管理相關
     //初次副本場景觸發器
     [Header("初次副本場景觸發器")]
     public bool newSongPlay;
@@ -43,6 +67,10 @@ public class GameManager : MonoBehaviour
     //當前預設難度
     [Header("難度文字")]
     public string[] nowSongLvString;
+
+    //副本得分(遊戲結束回報用)
+    [Header("副本得分")]
+    public int endScore;
 
     //副本初始化物件
     PauseButton pauseButton;
@@ -191,7 +219,7 @@ public class GameManager : MonoBehaviour
     //探索次數增加
     public void EventCountUpdata()
     {
-        //eventCount += 1;//fungus以增加
+        //eventCount += 1;//fungus已增加
         if (PlayerPrefs.HasKey("eventCount"))
             PlayerPrefs.SetInt("eventCount", eventCount);
         else

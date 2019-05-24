@@ -89,7 +89,8 @@ public class GameManager_Main : MonoBehaviour {
             explorationOnOff = false;
         }
 
-
+        //開始時檢查有沒有從副本帶回分數
+        CheckLevelScoreToGetItems();
     }
 
 
@@ -189,8 +190,12 @@ public class GameManager_Main : MonoBehaviour {
 
     public void explorationClaer() //馬上完成&探索結束按鈕
     {
+        gamemanagerFlowchart.SetIntegerVariable("獲得次數", gameManager.explores[explorationNo - 1]);
+        
         explorationNo = 0;
-        PlayerPrefs.DeleteKey("explorationNo"); //重置編號其他變數也會重設
+        if(PlayerPrefs.HasKey("explorationNo"))
+            PlayerPrefs.DeleteKey("explorationNo"); //重置編號其他變數也會重設
+        gameManager.EventCountDelete();
     }
 
     public void explrationOff() //調用關閉探索計時器Update
@@ -239,5 +244,33 @@ public class GameManager_Main : MonoBehaviour {
     public void NewSongPlayTrue()
     {
         gameManager.NewSongPlayTrue();
+    }
+
+    //獲得物品(確認Button)
+    public void GetItems()
+    {
+        int itemNo = gamemanagerFlowchart.GetIntegerVariable("物品抽籤");
+        gameManager.SetItems(itemNo, 1);
+    }
+
+    //副本物品獲得
+    void CheckLevelScoreToGetItems()
+    {
+        int count=0;
+        if(gameManager.endScore!=0)
+        {
+            if (gameManager.endScore >= 100000)
+                count = 5;
+            else if (gameManager.endScore < 100000 && gameManager.endScore >= 90000)
+                count = 3;
+            else if (gameManager.endScore < 90000 && gameManager.endScore >= 50000)
+                count = 2;
+            else if (gameManager.endScore < 50000)
+                count = 1;
+            gamemanagerFlowchart.SetIntegerVariable("獲得次數",count);
+            Block getItemBlock = gamemanagerFlowchart.FindBlock("獲得物品次數計算");
+            gamemanagerFlowchart.ExecuteBlock(getItemBlock);
+            gameManager.endScore = 0;
+        }
     }
 }

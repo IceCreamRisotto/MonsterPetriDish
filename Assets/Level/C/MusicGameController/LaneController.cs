@@ -274,7 +274,7 @@ public class LaneController : MonoBehaviour {
                 {
                     //擊中音符目標
                     //更新分數
-                    gameController.UpdateScoreText(100 * hitLevel);
+                    gameController.UpdateScoreText (Mathf.FloorToInt(Mathf.Ceil(50000/(float)gameController.musicTatal) * hitLevel));
                     //產生擊中特效
                     if (noteObject.isLongNoteStart)
                     {

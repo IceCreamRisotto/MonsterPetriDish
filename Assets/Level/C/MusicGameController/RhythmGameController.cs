@@ -139,6 +139,10 @@ public class RhythmGameController : MonoBehaviour {
 
     public int missTatal;
 
+    //總音符數量
+    [Header("當前歌曲音符數量")]
+    public int musicTatal;
+
     //UI
     public Slider slider;
 
@@ -208,6 +212,8 @@ public class RhythmGameController : MonoBehaviour {
         KoreographyTrackBase rhythmTrack = playingKoreo.GetTrackByID(eventID);
         //獲取事件
         List<KoreographyEvent> rawEvents = rhythmTrack.GetAllEvents();
+
+        musicTatal = rawEvents.Count;
 
         for (int i = 0; i < rawEvents.Count; i++)
         {
@@ -446,6 +452,8 @@ public class RhythmGameController : MonoBehaviour {
     //返回主畫面
     public void ReturnToMain()
     {
+        if (!gameStart)
+            gameManager.endScore = score;
         TurnToScreen("Main");
         SceneManager.LoadScene(1);
     }
