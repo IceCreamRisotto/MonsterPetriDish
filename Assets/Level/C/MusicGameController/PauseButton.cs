@@ -14,11 +14,20 @@ public class PauseButton : MonoBehaviour {
 
     Image image;
 
+    [Header("設定畫面歌名")]
     public Text setSongName;
 
+    [Header("設定畫面難度按鈕圖片")]
     public Image setSongButton;
 
+    //設定畫面難度文字
     Text setSongButtonText;
+
+    [Header("設定畫面難度按鈕圖片")]
+    public Image setGameScoreSongButton;
+
+    //結算畫面難度文字
+    Text setGameScoreSongButtonText;
 
     //public Slider setSlider;
 
@@ -55,12 +64,14 @@ public class PauseButton : MonoBehaviour {
 
         songLVButtonText = songLVButton.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
         setSongButtonText = setSongButton.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
+        setGameScoreSongButtonText = setGameScoreSongButton.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
+
 
         /*if(gameManager!=null)
         {
             SetUIInitialize();
         }*/
-        if(gameManager.newSongPlay)
+        if (gameManager.newSongPlay)
         {
             gameManager.newSongPlay = false;
             NewFungusPauseOrPlayMusic();
@@ -74,6 +85,8 @@ public class PauseButton : MonoBehaviour {
             Debug.Log("歌曲未選擇，歌曲名未載入");
         setSongButton.sprite = songLVButtonImage[gameManager.nowSongLv];
         setSongButtonText.text = gameManager.nowSongLvString[gameManager.nowSongLv];
+        setGameScoreSongButton.sprite = songLVButtonImage[gameManager.nowSongLv];
+        setGameScoreSongButtonText.text = gameManager.nowSongLvString[gameManager.nowSongLv];
     }
 
     void NewFungusPauseOrPlayMusic()
@@ -101,22 +114,25 @@ public class PauseButton : MonoBehaviour {
 
     public void PauseOrPlayMusic()
     {
-        rhythmGameController.isPauseState = !rhythmGameController.isPauseState;
-        if(rhythmGameController.isPauseState)
+        if (rhythmGameController.gameStart)
         {
-            image.sprite = sprites[1];
-            rhythmGameController.PauseMusic();
-            flowchart.SetBooleanVariable("set", true);
-            Block block = flowchart.FindBlock("點擊設定");
-            flowchart.ExecuteBlock(block);
-        }
-        else
-        {
-            image.sprite = sprites[0];
-            rhythmGameController.PlayMusic();
-            flowchart.SetBooleanVariable("set", false);
-            Block block = flowchart.FindBlock("點擊設定");
-            flowchart.ExecuteBlock(block);
+            rhythmGameController.isPauseState = !rhythmGameController.isPauseState;
+            if (rhythmGameController.isPauseState)
+            {
+                image.sprite = sprites[1];
+                rhythmGameController.PauseMusic();
+                flowchart.SetBooleanVariable("set", true);
+                Block block = flowchart.FindBlock("點擊設定");
+                flowchart.ExecuteBlock(block);
+            }
+            else
+            {
+                image.sprite = sprites[0];
+                rhythmGameController.PlayMusic();
+                flowchart.SetBooleanVariable("set", false);
+                Block block = flowchart.FindBlock("點擊設定");
+                flowchart.ExecuteBlock(block);
+            }
         }
     }
 

@@ -141,11 +141,13 @@ public class NoteObject : MonoBehaviour {
         {
             if (hitOffset >= 5000 && hitOffset <= 9000)
             {
-                hitLevel = lanes;
+                hitLevel = 2;
+                gameController.perfectTatal += 1;
             }
             else
             {
                 hitLevel = 1;
+                gameController.goodTatal += 1;
             }
         }
         else

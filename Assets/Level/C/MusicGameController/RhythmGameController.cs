@@ -5,6 +5,7 @@ using SonicBloom.Koreo;
 using UnityEngine.UI;
 using SonicBloom.Koreo.Players;
 using UnityEngine.SceneManagement;
+using System;
 
 public class RhythmGameController : MonoBehaviour {
 
@@ -128,7 +129,15 @@ public class RhythmGameController : MonoBehaviour {
 
     public bool isPauseState;
 
-    bool gameStart;
+    public bool gameStart;
+
+    bool gameStart1Second=false;
+
+    public int perfectTatal;
+
+    public int goodTatal;
+
+    public int missTatal;
 
     //UI
     public Slider slider;
@@ -142,6 +151,10 @@ public class RhythmGameController : MonoBehaviour {
     public Animator comboTextAnim;
 
     public GameObject gameOverUI;
+
+    public GameObject gameScoreUI;
+
+    public Text[] gameScoreUIText;
 
     //資源
 
@@ -265,6 +278,18 @@ public class RhythmGameController : MonoBehaviour {
             if (gameStart && !simpleMusicPlayer.IsPlaying)
                 gameOverUI.SetActive(true);
 
+        }
+
+        //當音樂播放結束，開放結算畫面
+        if (audioCom.time > 3 || gameStart1Second)
+        {
+            gameStart1Second = true;
+            if (audioCom.time < 1)
+            {
+                gameStart = false;
+                gameScoreUI.SetActive(true);
+                StartCoroutine(SetGameScoreUI());
+            }
         }
     }
 
@@ -453,5 +478,31 @@ public class RhythmGameController : MonoBehaviour {
     public int GetLanes()
     {
         return lanes;
+    }
+
+    //結算分數動態化
+    IEnumerator SetGameScoreUI()
+    {
+        for(int i=0;i<perfectTatal;i++)
+        {
+            gameScoreUIText[0].text = i.ToString();
+            yield return new WaitForSeconds(0.01f);
+        }
+        for (int i = 0; i < goodTatal; i++)
+        {
+            gameScoreUIText[1].text = i.ToString();
+            yield return new WaitForSeconds(0.01f);
+        }
+        for (int i = 0; i < missTatal; i++)
+        {
+            gameScoreUIText[2].text = i.ToString();
+            yield return new WaitForSeconds(0.01f);
+        }   
+        for (int i = 0; i < Int32.Parse(scoreText.text); i+= Int32.Parse(scoreText.text)/100)
+        {
+            gameScoreUIText[3].text = i.ToString();
+            yield return new WaitForSeconds(0.01f);
+        }
+        gameScoreUIText[3].text = scoreText.text;
     }
 }

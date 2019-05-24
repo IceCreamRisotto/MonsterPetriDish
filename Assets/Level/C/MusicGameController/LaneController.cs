@@ -108,6 +108,7 @@ public class LaneController : MonoBehaviour {
         //清除無效音符
         while (trackedNotes.Count > 0 && trackedNotes.Peek().isNoteMissed())
         {
+            gameController.missTatal += 1;
             if (trackedNotes.Peek().isLongNoteEnd)
             {
                 hasLongNote = false;
@@ -141,7 +142,7 @@ public class LaneController : MonoBehaviour {
                     //顯示命中等級 (Great Perfect)
                     if (longNoteHitEffectGo.activeSelf)
                     {
-                        gameController.ChangHitLevelSprite(lanes);
+                        gameController.ChangHitLevelSprite(2);
                         //CreateHitLongEffect();
                     }
                     timeVal = 0;
@@ -300,6 +301,7 @@ public class LaneController : MonoBehaviour {
                     //斷掉combo
                     gameController.HideComboNumText();
                     gameController.comboNum = 0;
+                    gameController.missTatal += 1;
                 }
                 noteObject.OnHit();
             }
