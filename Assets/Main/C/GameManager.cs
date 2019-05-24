@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     //全域GameManager
     static GameManager instance;
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour {
 
     //0=角色等級,1=角色經驗值,2=角色經驗值上限
     [Header("等級/經驗值/經驗值上限")]
-    public int[] playerExpManager=new int[3];
+    public int[] playerExpManager = new int[3];
 
 
     //物品管理相關
@@ -55,18 +56,17 @@ public class GameManager : MonoBehaviour {
     private void Awake()
     {
         string sceneName = SceneManager.GetActiveScene().name;
-        if (instance==null) //第一個GameManager
+        if (instance == null) //第一個GameManager
         {
             instance = this;
             DontDestroyOnLoad(this);
             name = "通用事件管理";
         }
-        else if(this!=instance) //若已經有不可破壞物件，刪除自己
+        else if (this != instance) //若已經有不可破壞物件，刪除自己
         {
             Debug.Log("刪除" + sceneName + "的" + name);
             Destroy(this);
         }
-        eventCount = 0;
     }
 
     // Use this for initialization
@@ -108,13 +108,17 @@ public class GameManager : MonoBehaviour {
                 Debug.Log("第" + i + "項物件剩餘量為空");
             }
         }
-        
+        if (PlayerPrefs.HasKey("eventCount"))//PlayerPrefs.DeleteKey
+            eventCount = PlayerPrefs.GetInt("eventCount");
+        else
+            eventCount = 0;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     //副本專用載入物件初始化
     public void InitializationFormLevel(PauseButton pause)
@@ -130,7 +134,7 @@ public class GameManager : MonoBehaviour {
     }
 
     //修改角色經驗值相關資料變數
-    public void SetPlayerExp(int no,int value)
+    public void SetPlayerExp(int no, int value)
     {
         playerExpManager[no] += value;
         ExpDataSave();
@@ -143,7 +147,7 @@ public class GameManager : MonoBehaviour {
     }
 
     //增加對應編號物品剩餘量
-    public void SetItems(int no,int value)
+    public void SetItems(int no, int value)
     {
         items[no] += value;
         ItemDataSave();
@@ -159,20 +163,20 @@ public class GameManager : MonoBehaviour {
     //物品相關存檔
     void ItemDataSave()
     {
-        for(int i=0;i<items.Length;i++)
+        for (int i = 0; i < items.Length; i++)
         {
             PlayerPrefs.SetInt("item" + i, items[i]);
         }
     }
 
     //副本初次選單歌曲Button輸入
-    public void NewButtonOn(SongIntroduction buttonObject,int no)
+    public void NewButtonOn(SongIntroduction buttonObject, int no)
     {
         buttonObject.Initialization(this, no, songslist[no]);
         buttonObject.gameObject.SetActive(true);
     }
 
-    
+
     public void PlayTestSong()
     {
         pauseButton.PlayTestSong();
@@ -183,4 +187,23 @@ public class GameManager : MonoBehaviour {
     {
         newSongPlay = true;
     }
+
+    //探索次數增加
+    public void EventCountUpdata()
+    {
+        //eventCount += 1;//fungus以增加
+        if (PlayerPrefs.HasKey("eventCount"))
+            PlayerPrefs.SetInt("eventCount", eventCount);
+        else
+            PlayerPrefs.SetInt("eventCount", 1);
+    }
+
+    //探索次數銷毀
+    public void EventCountDelete()
+    {
+        if (PlayerPrefs.HasKey("eventCount"))
+            PlayerPrefs.DeleteKey("eventCount");
+    }
+
+
 }

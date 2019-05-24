@@ -23,9 +23,11 @@ public class Store : MonoBehaviour {
     {//計算遇到事件次數,儲存至GameManager
         //Debug.Log(eventCount);
         gameManager.eventCount = eventCount;
+        gameManager.EventCountUpdata();
     }
     public void readEventCount()
     {//讀取GameManager事件遭遇次數
-        eventCount= gameManager.eventCount;
+        eventCount = PlayerPrefs.GetInt("eventCount");//gameManager.eventCount;
+
     }
 }
