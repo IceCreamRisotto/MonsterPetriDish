@@ -140,6 +140,7 @@ public class GameManager : MonoBehaviour
             eventCount = PlayerPrefs.GetInt("eventCount");
         else
             eventCount = 0;
+        playerStatusNo = PlayerPrefs.GetInt("playerStatusNo");
     }
 
     // Update is called once per frame
@@ -234,6 +235,6 @@ public class GameManager : MonoBehaviour
     }
 
     public void Evolution_prefs() {
-        PlayerPrefs.SetInt("evolution", playerStatusNo);
+        PlayerPrefs.SetInt("playerStatusNo", playerStatusNo);
     }
 }

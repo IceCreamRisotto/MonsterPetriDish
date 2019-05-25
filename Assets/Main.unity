@@ -21948,6 +21948,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator_state: {fileID: 285457938}
+  Switch_animator:
+  - rest
+  - rest_magic
+  - rest_mushroom
 --- !u!1 &1030278156
 GameObject:
   m_ObjectHideFlags: 0
