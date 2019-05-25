@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class M : MonoBehaviour {
 
-    private int chickenID;                                 //test
-
     public RectTransform player;
     public RectTransform Moving_target;
 
-    private Animator animator;
-    private Coroutine coRou = null;
-    private Coroutine coRou2 = null;
+    public Animator animator;
+    public Coroutine coRou = null;
+    public Coroutine coRou2 = null;
 
     public float speed;
     public float waitTime;
@@ -21,7 +19,7 @@ public class M : MonoBehaviour {
     private float x_move;
     private float y_move;
 
-    private int states;
+    public int states;
 
     public Transform turn;
     public float v3=0.5f;
@@ -31,7 +29,6 @@ public class M : MonoBehaviour {
 
     private void Awake()
     {
-        chickenID = 0;
         animator = GetComponent<Animator>();
         states = 1;
     }
@@ -152,51 +149,4 @@ public class M : MonoBehaviour {
             }
         }
     }
-
-
-    public void mega() {
-
-
-
-        if (chickenID == 0)
-        {
-            StopAllCoroutines();
-            states = 1;
-            animator.Play("rest_magic");//魔法雞
-            coRou = null;
-            coRou2 = null;
-            Moving_target.position = gameObject.GetComponent<RectTransform>().position;
-        }
-        else if (chickenID == 1)
-        {
-            StopAllCoroutines();
-            states = 1;
-            animator.Play("rest_mushroom");//蘑菇雞
-            coRou = null;
-            coRou2 = null;
-            Moving_target.position = gameObject.GetComponent<RectTransform>().position;
-        }
-        else if (chickenID == 2) {
-            StopAllCoroutines();
-            states = 1;
-            animator.Play("rest");//初始雞
-            coRou = null;
-            coRou2 = null;
-            Moving_target.position = gameObject.GetComponent<RectTransform>().position;
-        }
-
-        if (chickenID == 0)
-        {
-            chickenID = 1;
-        }
-        else if (chickenID == 1)
-        {
-            chickenID = 2;
-        }
-        else if (chickenID == 2)
-        {
-            chickenID = 0;
-        }
-    }
-
 }

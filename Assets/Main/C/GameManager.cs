@@ -233,5 +233,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.DeleteKey("eventCount");
     }
 
-
+    public void Evolution_prefs() {
+        PlayerPrefs.SetInt("evolution", playerStatusNo);
+    }
 }
