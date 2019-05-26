@@ -23,8 +23,8 @@ public class ConfirmGetProp : MonoBehaviour
 
     public void GetProp()
     {
-        gameManager.Explore_Prop_Probablilty[14] = 15;//進化道具重製
-        gameManager.ProbabilityProp_DataSave();//
+        //gameManager.Explore_Prop_Probablilty[14] = 15;//進化道具重製
+        //gameManager.ProbabilityProp_DataSave();//
         confirm_evolution_props();
         gameManager.SetItems(PropNumber, 1);
     }
