@@ -79,7 +79,15 @@ public class GameManager : MonoBehaviour
     public int explorationNumber;
 
     //探索遭遇次數
+    [Header("探索遭遇次數")]
     public int eventCount;
+
+    [Header("進化道具")]
+    public int[] Evolution_props;
+
+    //探索獲得道具機率
+    [Header("獲得道具機率")]
+    public int[] Explore_Prop_Probablilty;
 
     private void Awake()
     {
@@ -140,6 +148,16 @@ public class GameManager : MonoBehaviour
             eventCount = PlayerPrefs.GetInt("eventCount");
         else
             eventCount = 0;
+
+        //道具機率提取
+        for (int i = 0; i < Explore_Prop_Probablilty.Length; i++)
+        {
+            if (PlayerPrefs.HasKey("Explore_Prop_Probablilty" + i))
+            {
+                Explore_Prop_Probablilty[i] = PlayerPrefs.GetInt("Explore_Prop_Probablilty" + i);
+            }
+        }
+
         playerStatusNo = PlayerPrefs.GetInt("playerStatusNo");
     }
 
@@ -175,6 +193,12 @@ public class GameManager : MonoBehaviour
         return items[no];
     }
 
+    //獲得進化道具
+    public void SetItems_Evolution_props(int no) {
+        Explore_Prop_Probablilty[no] = -1;
+        ProbabilityProp_DataSave();
+    }
+
     //增加對應編號物品剩餘量
     public void SetItems(int no, int value)
     {
@@ -187,6 +211,14 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("playerLv", playerExpManager[0]);
         PlayerPrefs.SetInt("playerExp", playerExpManager[1]);
+    }
+
+    //道具機率存檔
+    public void ProbabilityProp_DataSave() {
+        for (int i = 0; i < Explore_Prop_Probablilty.Length; i++)
+        {
+            PlayerPrefs.SetInt("Explore_Prop_Probablilty" + i, Explore_Prop_Probablilty[i]);
+        }
     }
 
     //物品相關存檔
