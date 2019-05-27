@@ -7,15 +7,35 @@ public class MusicControl : MonoBehaviour {
 
     private AudioSource audioSource;
     private bool muteState;
-    private float preVolume;
+    float saveBgmVolume;
     //public Slider musicSlider;
+
+    public AudioClip[] Bgms;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = Bgms[(int)Random.Range(0,Bgms.Length)];
+    }
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        audioSource.volume = 1;
-        muteState = false;
-        preVolume = audioSource.volume;
+        
+        if (PlayerPrefs.HasKey("BgmVolume"))
+        {
+            saveBgmVolume = PlayerPrefs.GetFloat("BgmVolume");
+            audioSource.volume = saveBgmVolume;
+            if (saveBgmVolume == 0)
+                muteState = true;
+            else
+                muteState = false;
+        }
+        else
+        {
+            audioSource.volume = 0.8f;
+            muteState = false;
+        }
+        audioSource.Play();
     }
 
     /*public void VolumeChanged(float newVolume)
@@ -29,15 +49,16 @@ public class MusicControl : MonoBehaviour {
         muteState = !muteState;
         if (muteState)
         {
-            preVolume = audioSource.volume;
             audioSource.volume = 0;
             //musicSlider.value = 0;
             //BUG bool
+            PlayerPrefs.SetFloat("BgmVolume", 0);
             muteState = true;
         }
         else
         {
-            audioSource.volume = preVolume;
+            audioSource.volume = 0.8f;
+            PlayerPrefs.SetFloat("BgmVolume", 0.8f);
             //musicSlider.value = preVolume;
         }
     }

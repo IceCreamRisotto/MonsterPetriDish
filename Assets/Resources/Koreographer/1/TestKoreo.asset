@@ -19,7 +19,8 @@ MonoBehaviour:
   - sectionName: Test
     startSample: 0
     samplesPerBeat: 22615.384615384617
-    beatsPerMeasure: 4
+    beatsPerMeasure: 1
     bStartNewMeasure: 0
   mTracks:
   - {fileID: 11400000, guid: 821b085bdd5a72741a216d2e52753815, type: 2}
+  - {fileID: 11400000, guid: 5f4c9f19bccdd9148b412f2f26198fe9, type: 2}

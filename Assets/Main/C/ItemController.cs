@@ -57,15 +57,20 @@ public class ItemController : MonoBehaviour {
     //打開物品
     public void ClickProp()
     {
+        int count = 0;
         for(int i=0;i<itemPropGameObjects.Length;i++)
         {
             if(gameManager.GetItems(i)>0)
             {
-                itemPropGameObjects[i].SetActive(true);
+                itemPropGameObjects[i].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                itemPropGameObjects[i].transform.SetSiblingIndex(count);
+                count++;
+                //itemPropGameObjects[i].SetActive(true);
             }
             else
             {
-                itemPropGameObjects[i].SetActive(false);
+                itemPropGameObjects[i].GetComponent<Image>().color = new Color32(255,255,255,1);
+                //itemPropGameObjects[i].SetActive(false);
             }
         }
     }
@@ -99,7 +104,7 @@ public class ItemController : MonoBehaviour {
     public void ItemDeduct(int itemNo)
     {
         if (gameManager.GetItems(itemNo) > 0)
-            gameManager.SetItems(itemNo,-1);
+            gameManager.SetItems(itemNo, -1);
         if (gameManager.GetItems(itemNo) <= 0)
             PropItemOpacity(itemNo);
     }
@@ -107,7 +112,8 @@ public class ItemController : MonoBehaviour {
     //物件從物品消失
     void PropItemOpacity(int itemNo)
     {
-        itemPropGameObjects[itemNo].SetActive(false);
+        itemPropGameObjects[itemNo].GetComponent<Image>().color = new Color32(255, 255, 255, 1);
+        //itemPropGameObjects[itemNo].SetActive(false);
     }
 
     //檢查對應物件經驗值

@@ -23,8 +23,8 @@ public class RhythmGameController : MonoBehaviour {
     public float noteSpeed = 1;
 
     [Tooltip("音符命中區間窗口(音符被命中的難度,單位ms)")]
-    [Range(8f, 300f)]
-    public float hitWindowsRangeInMS = 300f;
+    [Range(8f, 999f)]
+    public float hitWindowsRangeInMS = 500f;
 
     //音樂樣本中的命中窗口
     int hitWindowRangeInSamples;

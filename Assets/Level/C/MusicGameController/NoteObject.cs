@@ -139,7 +139,7 @@ public class NoteObject : MonoBehaviour {
         int hitLevel = 0;
         if (hitOffset >= 0)
         {
-            if (hitOffset >= 5000 && hitOffset <= 9000)
+            if (hitOffset >= 12000 && hitOffset <= 25000)
             {
                 hitLevel = 2;
                 gameController.perfectTatal += 1;

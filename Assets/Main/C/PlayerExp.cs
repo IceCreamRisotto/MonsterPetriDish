@@ -80,11 +80,14 @@ public class PlayerExp : MonoBehaviour {
     //扣除食物，增加經驗值，經驗值UI變化，存檔
     public void PlayerEat(int itemNo)
     {
-        int exp;
-        itemController.ItemDeduct(itemNo);
-        exp = itemController.ItemExp(itemNo);
-        gameManager.SetPlayerExp(1,exp);
-        StartCoroutine(ExpUIAdd(exp));
+        if (gameManager.items[itemNo] > 0)
+        {
+            int exp;
+            itemController.ItemDeduct(itemNo);
+            exp = itemController.ItemExp(itemNo);
+            gameManager.SetPlayerExp(1, exp);
+            StartCoroutine(ExpUIAdd(exp));
+        }
     }
 
     IEnumerator ExpUIAdd(int exp)
