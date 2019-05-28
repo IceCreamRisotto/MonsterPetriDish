@@ -47,6 +47,8 @@ public class GameManager_Main : MonoBehaviour {
     //DateTime explorationEnd; //探索結束所需時長的標準
     TimeSpan reciprocal; //計時器
 
+    public ItemController itemController;
+
 
     public void debug()
     {
@@ -62,7 +64,7 @@ public class GameManager_Main : MonoBehaviour {
     public void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-
+        //itemController = FindObjectOfType<ItemController>();
         //探索確認選單，文本更新處
         explorText[0,0] = "Level.1  家";
         explorText[0,1] = "探索時間 半 小時";
@@ -190,8 +192,8 @@ public class GameManager_Main : MonoBehaviour {
 
     public void explorationClaer() //馬上完成&探索結束按鈕
     {
-        gamemanagerFlowchart.SetIntegerVariable("獲得次數", gameManager.explores[explorationNo - 1]);
-        
+        //gamemanagerFlowchart.SetIntegerVariable("獲得次數", gameManager.explores[explorationNo - 1]);
+        itemController.GetItemUIOpen(gameManager.explores[explorationNo - 1]);
         explorationNo = 0;
         if(PlayerPrefs.HasKey("explorationNo"))
             PlayerPrefs.DeleteKey("explorationNo"); //重置編號其他變數也會重設
@@ -267,9 +269,10 @@ public class GameManager_Main : MonoBehaviour {
                 count = 2;
             else if (gameManager.endScore < 50000)
                 count = 1;
-            gamemanagerFlowchart.SetIntegerVariable("獲得次數",count);
+            /*gamemanagerFlowchart.SetIntegerVariable("獲得次數",count);
             Block getItemBlock = gamemanagerFlowchart.FindBlock("獲得物品次數計算");
-            gamemanagerFlowchart.ExecuteBlock(getItemBlock);
+            gamemanagerFlowchart.ExecuteBlock(getItemBlock);*/
+            itemController.GetItemUIOpen(count);
             gameManager.endScore = 0;
         }
     }

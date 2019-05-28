@@ -43,6 +43,12 @@ public class LaneController : MonoBehaviour {
         }
     }
 
+    //音效
+    public AudioSource SESource;
+
+    //音效庫
+    public AudioClip[] SEClip;
+
     //長音符變數
     public bool hasLongNote;
     public float timeVal = 0;
@@ -272,6 +278,9 @@ public class LaneController : MonoBehaviour {
                 gameController.ChangHitLevelSprite(hitLevel);
                 if (hitLevel > 0)
                 {
+                    //播放打擊音效
+                    SESource.clip = SEClip[1];
+                    SESource.Play();
                     //擊中音符目標
                     //更新分數
                     gameController.UpdateScoreText (Mathf.FloorToInt(Mathf.Ceil(50000/(float)gameController.musicTatal) * hitLevel));
@@ -295,6 +304,9 @@ public class LaneController : MonoBehaviour {
                 }
                 else
                 {
+                    //播放打擊音效
+                    SESource.clip = SEClip[0];
+                    SESource.Play();
                     //未擊中
                     //減少玩家HP
                     gameController.UpdateHp();
@@ -307,11 +319,17 @@ public class LaneController : MonoBehaviour {
             }
             else
             {
+                //播放打擊音效
+                SESource.clip = SEClip[0];
+                SESource.Play();
                 //CreateDownEffect();
             }
         }
         else//當線上沒有音符時
         {
+            //播放打擊音效
+            SESource.clip = SEClip[0];
+            SESource.Play();
             //CreateDownEffect();
         }
     }
