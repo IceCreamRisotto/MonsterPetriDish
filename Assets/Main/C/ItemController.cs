@@ -40,9 +40,32 @@ public class ItemController : MonoBehaviour {
 
     GameManager_Main gameManager_Main;
 
+    [Header("獲得物品頁面")]
     public GameObject getItemUI;
 
+    [Header("獲得物品頁面確定按鈕")]
     public GameObject getItemUIButton;
+
+    [Header("物品介紹頁面")]
+    public GameObject itemDetailUI;
+
+    [Header("物品介紹頁面圖片")]
+    public Image itemDetaiUIImage;
+
+    [Header("物品介紹頁面名稱")]
+    public Text itemDetaiUIName;
+
+    [Header("物品介紹頁面內容")]
+    public Text itemDetaiUIDetai;
+
+    [Header("物品介紹頁面專屬遮罩")]
+    public GameObject itemDetaiPanel;
+
+    [Header("物品名稱")]
+    public string[] itemName;
+
+    [Header("物品內容(每15字元自動換行，/為手動換行)")]
+    public string[] itemDetai;
 
     //物品圖片
     [Header("物品圖片")]
@@ -86,20 +109,20 @@ public class ItemController : MonoBehaviour {
     //打開物品
     public void ClickProp()
     {
-        //int count = 0;
+        int count = 0;
         for(int i=0;i<itemPropGameObjects.Length;i++)
         {
             if(gameManager.GetItems(i)>0)
             {
-                /*itemPropGameObjects[i].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                itemPropGameObjects[i].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
                 itemPropGameObjects[i].transform.SetSiblingIndex(count);
-                count++;*/
-                itemPropGameObjects[i].SetActive(true);
+                count++;
+                //itemPropGameObjects[i].SetActive(true);
             }
             else
             {
-                //itemPropGameObjects[i].GetComponent<Image>().color = new Color32(255,255,255,1);
-                itemPropGameObjects[i].SetActive(false);
+                itemPropGameObjects[i].GetComponent<Image>().color = new Color32(255,255,255,1);
+                //itemPropGameObjects[i].SetActive(false);
             }
         }
     }
@@ -141,8 +164,9 @@ public class ItemController : MonoBehaviour {
     //物件從物品消失
     void PropItemOpacity(int itemNo)
     {
-        //itemPropGameObjects[itemNo].GetComponent<Image>().color = new Color32(255, 255, 255, 1);
-        itemPropGameObjects[itemNo].SetActive(false);
+        itemPropGameObjects[itemNo].GetComponent<Image>().color = new Color32(255, 255, 255, 1);
+        itemPropGameObjects[itemNo].transform.SetSiblingIndex(itemPropGameObjects.Length-1);
+        //itemPropGameObjects[itemNo].SetActive(false);
     }
 
     //檢查對應物件經驗值
@@ -197,12 +221,49 @@ public class ItemController : MonoBehaviour {
     //關閉獲得物品頁面
     public void CloseGetItemUI()
     {
-        for(int i=0;i<count;i++)
+        for (int i=0;i<count;i++)
         {
             getItemGameObject[i].SetActive(false);
         }
         getItemUIButton.SetActive(false);
         getItemUI.SetActive(false);
+    }
+
+    //當收集冊單一物品被點擊
+    //開啟物品介紹頁面
+    public void OpenItemDetaiUI(int itemNo)
+    {
+        itemDetaiUIImage.sprite = itemImage[itemNo];
+        itemDetaiUIName.text = itemName[itemNo];
+        itemDetaiUIDetai.text = "";
+        int count = 0;
+        foreach (char i in itemDetai[itemNo])
+        {
+            if (i == '/')
+            {
+                itemDetaiUIDetai.text += '\n';
+                count = 0;
+            }
+            else
+            {
+                if (count >= 14)
+                {
+                    itemDetaiUIDetai.text += '\n';
+                    count = 0;
+                }
+                itemDetaiUIDetai.text += i;
+                count++;
+            }
+        }
+        itemDetailUI.SetActive(true);
+        itemDetaiPanel.SetActive(true);
+    }
+
+    //關閉物品介紹頁面
+    public void CloseItemDetaiUI()
+    {
+        itemDetailUI.SetActive(false);
+        itemDetaiPanel.SetActive(false);
     }
 
 }

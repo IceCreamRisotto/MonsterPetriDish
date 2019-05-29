@@ -12,7 +12,7 @@ public class StatusController : MonoBehaviour {
 
     //文本
 
-    [Header("小雞基本狀態文本")]
+    [Header("小雞基本狀態文本(無用)")]
     public string[] stattusTextEditor;
 
     [Header("小雞詳細內容文本")]
