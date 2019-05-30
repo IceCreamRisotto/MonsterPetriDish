@@ -12,6 +12,9 @@ public class RhythmGameController : MonoBehaviour {
     [Header("固定難度為困難(測試用)")]
     public bool hardOnly;
 
+    [Header("是否開啟血量功能")]
+    public bool hpOpen;
+
     [Header("當前按鍵數量")]
     public int lanes=2;
 
@@ -417,13 +420,16 @@ public class RhythmGameController : MonoBehaviour {
     //血量更新
     public void UpdateHp()
     {
-        hp = hp - lanes;
-        slider.value = (float)hp / 10;
-        if (hp == 0)
+        if (hpOpen)
         {
-            isPauseState = true;
-            simpleMusicPlayer.Pause();
-            gameOverUI.SetActive(true);
+            hp = hp - lanes;
+            slider.value = (float)hp / 10;
+            if (hp == 0)
+            {
+                isPauseState = true;
+                simpleMusicPlayer.Pause();
+                gameOverUI.SetActive(true);
+            }
         }
     }
 

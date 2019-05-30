@@ -200,6 +200,14 @@ public class GameManager_Main : MonoBehaviour {
         gameManager.EventCountDelete();
     }
 
+    public void explorationExit() //放棄探索直接回家
+    {
+        explorationNo = 0;
+        if (PlayerPrefs.HasKey("explorationNo"))
+            PlayerPrefs.DeleteKey("explorationNo"); //重置編號其他變數也會重設
+        gameManager.EventCountDelete();
+    }
+
     public void explrationOff() //調用關閉探索計時器Update
     {
         explorationOnOff = false;
