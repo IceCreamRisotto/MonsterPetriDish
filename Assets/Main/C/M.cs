@@ -21,7 +21,8 @@ public class M : MonoBehaviour {
 
     public int states;
 
-    public Transform turn;
+    public Transform turn;//角色
+    public Transform turn_face;//zzz
     public float v3=0.5f;
 
     public Transform lim_UpperRight;
@@ -63,7 +64,7 @@ public class M : MonoBehaviour {
     }
 
     void Move() {
-
+        
         if (x_move > 0f)
         {
             turn.transform.localScale = new Vector3(-v3, v3, v3);
@@ -125,7 +126,18 @@ public class M : MonoBehaviour {
         StopCoroutine(coRou2);
         coRou = null;
         states = 3;
+        zzz_dir();
         animator.SetInteger("states", states);
+    }
+
+    void zzz_dir() {
+        if (turn.transform.localScale.x > 0f)
+        {
+            turn_face.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        }
+        else {
+            turn_face.transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+        }
     }
 
     public void click() {

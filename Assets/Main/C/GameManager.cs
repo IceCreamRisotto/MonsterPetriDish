@@ -159,6 +159,7 @@ public class GameManager : MonoBehaviour
         }
 
         playerStatusNo = PlayerPrefs.GetInt("playerStatusNo");
+
     }
 
     // Update is called once per frame
