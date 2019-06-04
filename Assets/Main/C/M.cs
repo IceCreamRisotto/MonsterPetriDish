@@ -8,8 +8,8 @@ public class M : MonoBehaviour {
     public RectTransform Moving_target;
 
     public Animator animator;
-    public Coroutine coRou = null;
-    public Coroutine coRou2 = null;
+    public Coroutine coRou = null;//sleep
+    public Coroutine coRou2 = null;//idel和移動
 
     public float speed;
     public float waitTime;
@@ -159,6 +159,17 @@ public class M : MonoBehaviour {
                 states = 1;
                 animator.SetInteger("states", states);
             }
+        }
+    }
+
+    public void eatWakeUp() {
+        if (animator.GetInteger("states") == 3)
+        {
+            click();
+        }
+        else {
+            StopCoroutine(coRou);
+            coRou = null;
         }
     }
 }

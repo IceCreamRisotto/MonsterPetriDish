@@ -33,7 +33,6 @@ public class Click_Prop : MonoBehaviour {
             child2.position = copytransfrom.position;
             child2.localScale = copytransfrom.localScale;
             child2.sizeDelta = copytransfrom.sizeDelta;
-                
         }
     }
 
