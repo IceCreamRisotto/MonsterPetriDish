@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Evolution : MonoBehaviour {
 
     GameManager gameManager;
-    public M animator_state;
+    public playStatus animator_state;
     [Header("場上chicken變化")]
     public string[] Switch_animator;
 
@@ -43,7 +43,6 @@ public class Evolution : MonoBehaviour {
         gameManager = FindObjectOfType<GameManager>();
         
         //Evolution_state();
-        //statusChange();
     }
 
     //選擇進化道具畫面
@@ -107,7 +106,7 @@ public class Evolution : MonoBehaviour {
     //statusChange();
 
     //改變Main角色
-    void Evolution_state() {
+    public void Evolution_state() {
         animator_state.StopAllCoroutines();
         animator_state.states = 1;
         animator_state.animator.Play(Switch_animator[gameManager.playerStatusNo]);

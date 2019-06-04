@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class M : MonoBehaviour {
+public class playStatus : MonoBehaviour {
 
     public RectTransform player;
     public RectTransform Moving_target;
@@ -28,10 +28,18 @@ public class M : MonoBehaviour {
     public Transform lim_UpperRight;
     public Transform lim_BottomLeft;
 
+    public string[] Switch_animator;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
         states = 1;
+    }
+
+    void Start()
+    {
+        //Debug.Log(Switch_animator[PlayerPrefs.GetInt("playerStatusNo")]);
+        animator.Play(Switch_animator[PlayerPrefs.GetInt("playerStatusNo")]);
     }
 
     private void Update()
