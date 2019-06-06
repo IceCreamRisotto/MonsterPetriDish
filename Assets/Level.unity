@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1622ac048280554469059b6476324a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hardOnly: 1
+  hardOnly: 0
   hpOpen: 0
   lanes: 2
   eventID: Hard
@@ -346,7 +346,7 @@ MonoBehaviour:
   - {fileID: 353993614}
   testAudio: {fileID: 569852839}
   testMusics:
-  - {fileID: 8300000, guid: fd9ae6cd0b5245d479d0ea716c5a64f5, type: 3}
+  - {fileID: 8300000, guid: 42c8a864221bac9489ca51d860e38c52, type: 3}
   - {fileID: 8300000, guid: 1a5f59037a23aa34ca2787d96d33fb07, type: 3}
   cdAnim: {fileID: 957036091}
   songLVButton: {fileID: 1914176901}

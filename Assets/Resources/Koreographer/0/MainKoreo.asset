@@ -11,21 +11,17 @@ MonoBehaviour:
   m_Script: {fileID: -2076007791, guid: aa81bbec85a3f423193272a7c6154986, type: 3}
   m_Name: MainKoreo
   m_EditorClassIdentifier: 
-  mSourceClip: {fileID: 8300000, guid: fd9ae6cd0b5245d479d0ea716c5a64f5, type: 3}
+  mSourceClip: {fileID: 8300000, guid: 42c8a864221bac9489ca51d860e38c52, type: 3}
   mAudioFilePath: 
   mSampleRate: 44100
   mIgnoreLatencyOffset: 0
   mTempoSections:
   - sectionName: Main
     startSample: 0
-    samplesPerBeat: 24054.545454545456
+    samplesPerBeat: 22771.084337349395
     beatsPerMeasure: 4
-    bStartNewMeasure: 1
-  - sectionName: Main
-    startSample: 0
-    samplesPerBeat: 24054.545454545456
-    beatsPerMeasure: 4
-    bStartNewMeasure: 1
+    bStartNewMeasure: 0
   mTracks:
-  - {fileID: 11400000, guid: 0a337beff98fb354195fa6e60643b755, type: 2}
+  - {fileID: 11400000, guid: f103daa6a1bebe844b0864da8762ea61, type: 2}
+  - {fileID: 11400000, guid: 36c4a2f6817a64147b99561cd6003e6e, type: 2}
   - {fileID: 11400000, guid: 54bdb39b75cae94479cf0d849983c130, type: 2}
