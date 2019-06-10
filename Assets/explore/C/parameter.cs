@@ -44,6 +44,6 @@ public class parameter : MonoBehaviour {
 
     public void run()
     {
-        floor_speed = 3f;
+        floor_speed = 2f;
     }
 }

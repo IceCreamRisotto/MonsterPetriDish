@@ -8,9 +8,13 @@ public class MoveSound : MonoBehaviour {
     public AudioClip[] sound;
     private AudioSource audioSource;
     float saveBgmVolume;
-    public int moveNum
+    //public int moveNum
+    //{
+    //    get { return flowchart.GetIntegerVariable("moveNum"); }
+    //}
+    public int scence
     {
-        get { return flowchart.GetIntegerVariable("moveNum"); }
+        get { return flowchart.GetIntegerVariable("scence"); }
     }
     private void Awake()
     {
@@ -18,6 +22,8 @@ public class MoveSound : MonoBehaviour {
     }
     private void Start()
     {
+        audioSource.clip = sound[scence - 1];
+        audioSource.Play();
         if (PlayerPrefs.HasKey("BgmVolume"))
         {
             saveBgmVolume = PlayerPrefs.GetFloat("BgmVolume");
@@ -31,7 +37,7 @@ public class MoveSound : MonoBehaviour {
     //播放音效
     public void PlaySound()
     {
-        audioSource.clip = sound[moveNum];
+        audioSource.clip = sound[scence - 1];
         audioSource.Play();
     }
     //停止音效

@@ -13,12 +13,16 @@ public class audioCtrl : MonoBehaviour {
     public int scence {
         get { return flowchart.GetIntegerVariable("scence"); }
     }
+    public int backNum
+    {
+        get { return flowchart.GetIntegerVariable("backNum"); }
+    }
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }
-    private void Start()
+    public void Start()
     {
         audioSource.clip = bgm[scence - 1];
         //Debug.Log(scence - 1);
@@ -32,6 +36,17 @@ public class audioCtrl : MonoBehaviour {
             audioSource.volume = 0.8f;
         }
         audioSource.Play();
+    }
+    //開始音效
+    public void PlaySound()
+    {
+        audioSource.clip = bgm[backNum];
+        audioSource.Play();
+    }
+    //停止音效
+    public void stop()
+    {
+        audioSource.Stop();
     }
 
 }
