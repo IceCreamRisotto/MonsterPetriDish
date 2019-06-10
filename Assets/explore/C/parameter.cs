@@ -16,7 +16,7 @@ public class parameter : MonoBehaviour {
         set { flowchart.SetIntegerVariable("scence", value); }
     }
 
-    private void Start()
+    private void Awake()
     {
         exploreBackground = GameObject.Find("通用事件管理").GetComponent<GameManager>().explorationNumber;
     }
@@ -44,6 +44,6 @@ public class parameter : MonoBehaviour {
 
     public void run()
     {
-        floor_speed = 1.7f;
+        floor_speed = 3f;
     }
 }
