@@ -41,8 +41,6 @@ public class Evolution : MonoBehaviour {
     {
         item = GameObject.Find("ItemController").GetComponent<ItemController>();
         gameManager = FindObjectOfType<GameManager>();
-        
-        //Evolution_state();
     }
 
     //選擇進化道具畫面
@@ -99,11 +97,6 @@ public class Evolution : MonoBehaviour {
     public void cancel() {
         ok.SetActive(false);
     }
-
-    //gameManager.playerStatusNo = (gameManager.playerStatusNo+1) % Switch_animator.Length;       //test
-    //gameManager.Evolution_prefs();//進化儲存
-    //Evolution_state();
-    //statusChange();
 
     //改變Main角色
     public void Evolution_state() {

@@ -30,8 +30,11 @@ public class playStatus : MonoBehaviour {
 
     public string[] Switch_animator;
 
+    GameManager gameManager;
+
     private void Awake()
     {
+        gameManager = FindObjectOfType<GameManager>();
         animator = GetComponent<Animator>();
         states = 1;
     }
@@ -40,12 +43,13 @@ public class playStatus : MonoBehaviour {
     {
         //Debug.Log(Switch_animator[PlayerPrefs.GetInt("playerStatusNo")]);
         animator.Play(Switch_animator[PlayerPrefs.GetInt("playerStatusNo")]);
+        
     }
 
     private void Update()
     {
+        gameManager.Evolution_Button();
         click_off();
-
         if (coRou == null) {//等太久會睡覺
             coRou = StartCoroutine(sleep());
         }

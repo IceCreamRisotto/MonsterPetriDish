@@ -89,6 +89,12 @@ public class GameManager : MonoBehaviour
     [Header("獲得道具機率")]
     public int[] Explore_Prop_Probablilty;
 
+    [Header("進化等級")]
+    public int level;
+
+    [Header("進化按鈕")]
+    public GameObject EvolutionButton;
+
     private void Awake()
     {
         string sceneName = SceneManager.GetActiveScene().name;
@@ -103,6 +109,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("刪除" + sceneName + "的" + name);
             Destroy(this);
         }
+
+        //PlayerPrefs.SetInt("playerStatusNo", 0);    //還原初始雞 測試
     }
 
     // Use this for initialization
@@ -269,5 +277,20 @@ public class GameManager : MonoBehaviour
 
     public void Evolution_prefs() {
         PlayerPrefs.SetInt("playerStatusNo", playerStatusNo);
+    }
+
+    //判斷是否跳出進化按鈕
+    public void Evolution_Button() {
+        if (playerExpManager[0] >= level && (items[13] >= 1 || items[14] >= 1)) {
+
+            if (playerStatusNo == 0)
+            {
+                EvolutionButton.SetActive(true);
+            }
+            else
+                EvolutionButton.SetActive(false);
+        }
+        else
+            EvolutionButton.SetActive(false);
     }
 }
