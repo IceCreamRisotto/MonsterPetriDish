@@ -161,6 +161,8 @@ public class RhythmGameController : MonoBehaviour {
 
     public GameObject gameScoreUI;
 
+    public Text gameScoreName;
+
     public Text[] gameScoreUIText;
 
     //資源
@@ -296,6 +298,7 @@ public class RhythmGameController : MonoBehaviour {
             if (audioCom.time < 1)
             {
                 gameStart = false;
+                gameScoreName.text = gameManager.songslist[gameManager.nowSong];
                 gameScoreUI.SetActive(true);
                 StartCoroutine(SetGameScoreUI());
             }
