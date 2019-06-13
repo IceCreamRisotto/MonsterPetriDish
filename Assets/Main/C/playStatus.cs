@@ -43,12 +43,12 @@ public class playStatus : MonoBehaviour {
     {
         //Debug.Log(Switch_animator[PlayerPrefs.GetInt("playerStatusNo")]);
         animator.Play(Switch_animator[PlayerPrefs.GetInt("playerStatusNo")]);
-        
+        //gameManager.EvolutionButton = GameObject.Find("進化").GetComponent<GameObject>();
     }
 
     private void Update()
     {
-        gameManager.Evolution_Button();
+        //gameManager.Evolution_Button();
         click_off();
         if (coRou == null) {//等太久會睡覺
             coRou = StartCoroutine(sleep());

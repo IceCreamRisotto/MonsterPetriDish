@@ -281,14 +281,8 @@ public class GameManager : MonoBehaviour
 
     //判斷是否跳出進化按鈕
     public void Evolution_Button() {
-        if (playerExpManager[0] >= level && (items[13] >= 1 || items[14] >= 1)) {
-
-            if (playerStatusNo == 0)
-            {
-                EvolutionButton.SetActive(true);
-            }
-            else
-                EvolutionButton.SetActive(false);
+        if (playerExpManager[0] >= level && playerStatusNo == 0 && (items[13] >= 1 || items[14] >= 1)) {
+            EvolutionButton.SetActive(true);
         }
         else
             EvolutionButton.SetActive(false);
