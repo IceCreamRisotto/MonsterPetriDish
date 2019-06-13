@@ -4747,6 +4747,7 @@ MonoBehaviour:
   - rest
   - rest_magic
   - rest_mushroom
+  EvolutionButton: {fileID: 1025654072}
 --- !u!1 &307809484
 GameObject:
   m_ObjectHideFlags: 0
@@ -16807,7 +16808,6 @@ MonoBehaviour:
   Evolution_props: 0d0000000e000000
   Explore_Prop_Probablilty: 190000001900000019000000190000001900000019000000190000001900000019000000190000001900000019000000190000000f0000000f000000
   level: 10
-  EvolutionButton: {fileID: 0}
 --- !u!4 &817420036
 Transform:
   m_ObjectHideFlags: 0

@@ -32,6 +32,9 @@ public class playStatus : MonoBehaviour {
 
     GameManager gameManager;
 
+    [Header("進化按鈕")]
+    public GameObject EvolutionButton;
+
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -43,12 +46,11 @@ public class playStatus : MonoBehaviour {
     {
         //Debug.Log(Switch_animator[PlayerPrefs.GetInt("playerStatusNo")]);
         animator.Play(Switch_animator[PlayerPrefs.GetInt("playerStatusNo")]);
-        //gameManager.EvolutionButton = GameObject.Find("進化").GetComponent<GameObject>();
     }
 
     private void Update()
     {
-        //gameManager.Evolution_Button();
+        Evolution_Button();//是否顯示進化按鈕
         click_off();
         if (coRou == null) {//等太久會睡覺
             coRou = StartCoroutine(sleep());
@@ -183,5 +185,18 @@ public class playStatus : MonoBehaviour {
             StopCoroutine(coRou);
             coRou = null;
         }
+    }
+
+
+    //判斷是否跳出進化按鈕
+    public void Evolution_Button()
+    {
+        if (gameManager.playerExpManager[0] >= gameManager.level && gameManager.playerStatusNo == 0 &&
+            (gameManager.items[13] >= 1 || gameManager.items[14] >= 1))
+        {
+            EvolutionButton.SetActive(true);
+        }
+        else
+            EvolutionButton.SetActive(false);
     }
 }

@@ -92,8 +92,8 @@ public class GameManager : MonoBehaviour
     [Header("進化等級")]
     public int level;
 
-    [Header("進化按鈕")]
-    public GameObject EvolutionButton;
+    [Header("測試:還原初始雞")]
+    public bool re;
 
     private void Awake()
     {
@@ -110,7 +110,8 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
 
-        //PlayerPrefs.SetInt("playerStatusNo", 0);    //還原初始雞 測試
+        if(re)//還原初始雞                               //測試
+            PlayerPrefs.SetInt("playerStatusNo", 0);    
     }
 
     // Use this for initialization
@@ -279,12 +280,5 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("playerStatusNo", playerStatusNo);
     }
 
-    //判斷是否跳出進化按鈕
-    public void Evolution_Button() {
-        if (playerExpManager[0] >= level && playerStatusNo == 0 && (items[13] >= 1 || items[14] >= 1)) {
-            EvolutionButton.SetActive(true);
-        }
-        else
-            EvolutionButton.SetActive(false);
-    }
+
 }

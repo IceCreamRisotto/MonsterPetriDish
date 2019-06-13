@@ -113,4 +113,5 @@ public class Evolution : MonoBehaviour {
     {
         image.sprite = Resources.Load("Character/" + Status[gameManager.playerStatusNo], typeof(Sprite)) as Sprite;
     }
+
 }
