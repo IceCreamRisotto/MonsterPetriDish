@@ -24,6 +24,6 @@ public class NewGame : MonoBehaviour {
     }
 
     public void readNewGame() {
-        newGame = PlayerPrefs.GetInt(change.playerPrefsName);
+        newGame = PlayerPrefs.GetInt("NewPlayerFromExplore");
     }
 }
