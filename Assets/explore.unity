@@ -4282,6 +4282,8 @@ GameObject:
   - component: {fileID: 241879037}
   - component: {fileID: 241878955}
   - component: {fileID: 241878954}
+  - component: {fileID: 241879043}
+  - component: {fileID: 241879041}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -4302,8 +4304,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 2242.6907, y: -82.17122}
-  variablesScrollPos: {x: 0, y: 282}
+  scrollPos: {x: 1935.7145, y: -98.45033}
+  variablesScrollPos: {x: 0, y: 302}
   variablesExpanded: 1
   blockViewHeight: 431
   zoom: 0.42999998
@@ -4313,8 +4315,7 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks:
-  - {fileID: 241878956}
+  selectedBlocks: []
   selectedCommands: []
   variables:
   - {fileID: 241878204}
@@ -4344,6 +4345,7 @@ MonoBehaviour:
   - {fileID: 241878807}
   - {fileID: 241878951}
   - {fileID: 241878952}
+  - {fileID: 241879041}
   description: 
   stepPause: 0
   colorCommands: 1
@@ -22934,7 +22936,7 @@ MonoBehaviour:
   value: 0
 --- !u!114 &241878952
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 241878171}
@@ -22982,7 +22984,7 @@ MonoBehaviour:
   - {fileID: 241878958}
 --- !u!114 &241878954
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 241878171}
@@ -22995,7 +22997,7 @@ MonoBehaviour:
   indentLevel: 1
 --- !u!114 &241878955
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 241878171}
@@ -23044,6 +23046,7 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 241879021}
   commandList:
+  - {fileID: 241879043}
   - {fileID: 241879036}
   - {fileID: 241879035}
   - {fileID: 241879033}
@@ -23342,8 +23345,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -247.88434
-    y: 587.6828
+    x: -250.20992
+    y: 592.334
     width: 129.06976
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -24697,7 +24700,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &241879021
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 241878171}
@@ -25011,7 +25014,7 @@ MonoBehaviour:
     stringVal: 
 --- !u!114 &241879037
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 241878171}
@@ -25024,7 +25027,7 @@ MonoBehaviour:
   indentLevel: 1
 --- !u!114 &241879038
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 241878171}
@@ -25096,6 +25099,20 @@ MonoBehaviour:
   stringData:
     stringRef: {fileID: 0}
     stringVal: 
+--- !u!114 &241879041
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 241878171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb91b566ceda411bad1e9d3c3243ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scope: 0
+  key: teachChange
+  value: 0
 --- !u!114 &241879042
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -25109,6 +25126,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 1045
   indentLevel: 0
+--- !u!114 &241879043
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 241878171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 2070
+  indentLevel: 0
+  targetObject: {fileID: 48104751}
+  methodName: PlaySound
+  delay: 0
 --- !u!114 &241879087
 MonoBehaviour:
   m_ObjectHideFlags: 2
