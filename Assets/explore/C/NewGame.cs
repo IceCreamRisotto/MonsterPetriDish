@@ -11,6 +11,7 @@ public class NewGame : MonoBehaviour {
         set { flowchart.SetIntegerVariable("SceneCount",value); }
     }
     public int newGame {
+        get { return flowchart.GetIntegerVariable("newGame"); }
         set { flowchart.SetIntegerVariable("newGame", value); }
     }
     private void Start()
@@ -24,6 +25,6 @@ public class NewGame : MonoBehaviour {
     }
 
     public void readNewGame() {
-        newGame = PlayerPrefs.GetInt("NewPlayerFromExplore");
+        newGame = PlayerPrefs.GetInt(change.playerPrefsName);
     }
 }
