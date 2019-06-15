@@ -54,7 +54,7 @@ public class NewPlayerTeacher : MonoBehaviour
     void Start()
     {
         //測試用
-        PlayerPrefs.SetInt(playerPrefsName, 0);
+        //PlayerPrefs.SetInt(playerPrefsName, 0);
 
         //初始化
         canvasObject.SetActive(false);
