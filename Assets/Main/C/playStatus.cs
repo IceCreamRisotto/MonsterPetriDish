@@ -35,6 +35,13 @@ public class playStatus : MonoBehaviour {
     [Header("進化按鈕")]
     public GameObject EvolutionButton;
 
+    [Header("吃東西後多久會跳躍的計時器")]
+    public float waitJump;
+
+    //計時器
+    private float w1;
+    private int w2;
+
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -50,6 +57,13 @@ public class playStatus : MonoBehaviour {
 
     private void Update()
     {
+        if (w2 < waitJump)
+        {
+            w1 += Time.deltaTime;
+            w2 = (int)w1;
+            //Debug.Log(w2);
+        }
+
         Evolution_Button();//是否顯示進化按鈕
         click_off();
         if (coRou == null) {//等太久會睡覺
@@ -177,13 +191,11 @@ public class playStatus : MonoBehaviour {
     }
 
     public void eatWakeUp() {
-        if (animator.GetInteger("states") == 3)
+        if (w2 == waitJump)
         {
             click();
-        }
-        else {
-            StopCoroutine(coRou);
-            coRou = null;
+            w1 = 0f;
+            w2 = 0;
         }
     }
 
