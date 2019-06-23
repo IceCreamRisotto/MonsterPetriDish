@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class NewPlayerTeacher : MonoBehaviour
 {
 
+    [Header("每次場景跳出新手教學")]
+    public bool startPlayNewPlayerTeacher;
+
     //存檔物件名稱(依據場景修改)
     [Header("存檔物件名稱")]
     public string playerPrefsName;
@@ -53,8 +56,11 @@ public class NewPlayerTeacher : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //測試用
-        //PlayerPrefs.SetInt(playerPrefsName, 0);
+        if (startPlayNewPlayerTeacher)
+        {
+            //測試用
+            PlayerPrefs.SetInt(playerPrefsName, 0);
+        }
 
         //初始化
         canvasObject.SetActive(false);
