@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour
     [Header("物件剩餘量")]
     public int[] items;
 
+    [Header("當前物品是否可在物品欄使用")]
+    public bool[] itemCanClickInProp;
+
     //根據關卡獲得物件量
     [Header("根據關卡獲得物件量")]
     public int[] explores;
@@ -279,6 +282,4 @@ public class GameManager : MonoBehaviour
     public void Evolution_prefs() {
         PlayerPrefs.SetInt("playerStatusNo", playerStatusNo);
     }
-
-
 }

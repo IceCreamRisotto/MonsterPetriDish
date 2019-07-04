@@ -14154,7 +14154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac80d310636016a4a96330b4b55a0ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPlayNewPlayerTeacher: 1
+  startPlayNewPlayerTeacher: 0
   playerPrefsName: NewPlayerFromLevel
   sceneCount: 0
   sceneMask: 0000000000000000000000000000000001000000010000000200000003000000040000000500000000000000

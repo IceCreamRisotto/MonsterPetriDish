@@ -199,6 +199,18 @@ public class playStatus : MonoBehaviour {
         }
     }
 
+    //添加物品參數版本 by微笑
+    public void eatWakeUp(int itemNo)
+    {
+        if (gameManager.itemCanClickInProp[itemNo])
+            if (w2 == waitJump)
+            {
+                click();
+                w1 = 0f;
+                w2 = 0;
+            }
+    }
+
 
     //判斷是否跳出進化按鈕
     public void Evolution_Button()

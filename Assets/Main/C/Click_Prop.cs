@@ -24,6 +24,7 @@ public class Click_Prop : MonoBehaviour {
     }
 
     public void eat(int itemID) {
+        if(gameManager.itemCanClickInProp[itemID])
         if (gameManager.items[itemID] > 0)
         {
             copytransfrom = GameObject.Find(gameObject.name).GetComponent<RectTransform>();

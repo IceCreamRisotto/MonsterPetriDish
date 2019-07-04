@@ -9,6 +9,9 @@ public class ItemController : MonoBehaviour {
     [Header("物件給予經驗值量")]
     public int[] itemsExp;
 
+    [Header("打開物品欄時，排除特殊道具")]
+    public int[] itemsSpecialNo;
+
     //此次獲得物品數量
     //[Header("此次獲得物品數量")]
     int count;
@@ -71,6 +74,8 @@ public class ItemController : MonoBehaviour {
     [Header("物品圖片")]
     public Sprite[] itemImage;
 
+    
+
     // Use this for initialization
     void Start() {
 
@@ -116,15 +121,26 @@ public class ItemController : MonoBehaviour {
             {
                 itemPropGameObjects[i].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
                 itemPropGameObjects[i].transform.SetSiblingIndex(count);
+                gameManager.itemCanClickInProp[i] = true;
                 count++;
                 //itemPropGameObjects[i].SetActive(true);
             }
             else
             {
                 itemPropGameObjects[i].GetComponent<Image>().color = new Color32(255,255,255,1);
+                gameManager.itemCanClickInProp[i] = false;
                 //itemPropGameObjects[i].SetActive(false);
             }
         }
+
+        //排除特定道具
+        for(int i=0;i<itemsSpecialNo.Length;i++)
+        {
+            itemPropGameObjects[itemsSpecialNo[i]].GetComponent<Image>().color = new Color32(255, 255, 255, 1);
+            itemPropGameObjects[itemsSpecialNo[i]].transform.SetSiblingIndex(itemPropGameObjects.Length - 1);
+            gameManager.itemCanClickInProp[itemsSpecialNo[i]] = false;
+        }
+
     }
 
     //打開收集冊
@@ -166,6 +182,7 @@ public class ItemController : MonoBehaviour {
     {
         itemPropGameObjects[itemNo].GetComponent<Image>().color = new Color32(255, 255, 255, 1);
         itemPropGameObjects[itemNo].transform.SetSiblingIndex(itemPropGameObjects.Length-1);
+        gameManager.itemCanClickInProp[itemNo] = false;
         //itemPropGameObjects[itemNo].SetActive(false);
     }
 
